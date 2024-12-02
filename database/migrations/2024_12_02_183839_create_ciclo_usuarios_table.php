@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('asignaturas', function (Blueprint $table) {
+        Schema::create('ciclo_usuarios', function (Blueprint $table) {
             $table->id();
-            $table->string("nombre");
-            $table->string("descripcion");
             $table->foreign('ciclo-id')->references('id')->on('ciclos');
+            $table->foreign('usuario-id')->references('id')->on('users');
+            $table->timestamps('fecha-matricula');
+
+            $table->primary(['ciclo-id', 'usuario-id', 'fecha-matricula']);
 
             $table->timestamps();
             $table->softDeletes();
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('asignaturas');
+        Schema::dropIfExists('ciclo_usuarios');
     }
 };
