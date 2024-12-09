@@ -20,6 +20,12 @@ class User extends Authenticatable
     public function roles(): BelongsTo{
         return $this->belongsTo(Rol::class);
     }
+    public function asignaturas_horarios(){
+        return $this->belongsToMany(Asignatura::class, 'asignatura_usuario_horario')
+                ->withPivot('horario_id')
+                ->withTimestamps();
+
+    }
 
     public function reuniones(): HasMany {
         return $this->hasMany(Reunion::class);
