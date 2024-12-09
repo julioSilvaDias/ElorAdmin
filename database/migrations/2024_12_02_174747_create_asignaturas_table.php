@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("nombre");
             $table->string("descripcion");
-            $table->foreign('ciclo-id')->references('id')->on('ciclos');
-
+            $table->unsignedBigInteger('ciclo_id');
+            $table->foreign('ciclo_id')->references('id')->on('ciclos');
             $table->timestamps();
             $table->softDeletes();
         });

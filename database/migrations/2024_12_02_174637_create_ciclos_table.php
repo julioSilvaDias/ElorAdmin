@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('ciclos', function (Blueprint $table) {
             $table->id();
-            $table->int('curso');
+            $table->integer('curso');
             $table->string('nombre');
             $table->string('descripcion');
-
             $table->timestamps();
             $table->softDeletes();
         });

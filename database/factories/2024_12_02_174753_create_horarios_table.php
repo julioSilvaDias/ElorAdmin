@@ -15,15 +15,13 @@ return new class extends Migration
             $table->id();
             $table->enum('dia-semana', ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'])->default('lunes');
             $table->enum('hora', ['1', '2', '3', '4', '5', '6'])->default('1');
-            $table->foreign('profesor-id')->references('id')->on('users');
-            $table->foreign('asignatura-id')->references('id')->on('asignaturas');
-
-
-            $table->primary(['dia-semana', 'hora', 'profesor-id', 'asignatura-id']);
-            
+            $table->unsignedBigInteger('profesor_id');
+            $table->unsignedBigInteger('asignatura_id');
+            $table->foreign('profesor_id')->references('id')->on('users');
+            $table->foreign('asignatura_id')->references('id')->on('asignaturas');
+            $table->primary(['dia-semana', 'hora', 'profesor_id', 'asignatura_id']);
             $table->timestamps();
             $table->softDeletes();
-
         });
     }
 

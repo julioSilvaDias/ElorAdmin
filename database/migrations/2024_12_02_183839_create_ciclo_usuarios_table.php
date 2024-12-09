@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('ciclo_usuarios', function (Blueprint $table) {
             $table->id();
-            $table->foreign('ciclo-id')->references('id')->on('ciclos');
-            $table->foreign('usuario-id')->references('id')->on('users');
-            $table->timestamps('fecha-matricula');
-
-            $table->primary(['ciclo-id', 'usuario-id', 'fecha-matricula']);
-
+            $table->timestamp('fecha-matricula');
             $table->timestamps();
             $table->softDeletes();
+            $table->unsignedBigInteger('ciclo-id');
+            $table->foreign('ciclo-id')->references('id')->on('ciclos');
+            $table->unsignedBigInteger('usuario-id');
+            $table->foreign('usuario-id')->references('id')->on('users');
+            $table->primary(['ciclo-id', 'usuario-id', 'fecha-matricula']);
         });
     }
 
