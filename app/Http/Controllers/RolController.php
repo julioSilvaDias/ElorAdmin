@@ -12,7 +12,8 @@ class RolController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Rol::orderBy('created_at')->get();
+        return view('roles.index',['roles' => $roles]);
     }
 
     /**
