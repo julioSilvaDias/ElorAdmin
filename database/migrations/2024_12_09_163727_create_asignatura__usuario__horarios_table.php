@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('asignatura__usuario__horarios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('usuario_id');
-            $table->foreignId('horario_id');
-            $table->foreignId('asignatura_id');
             $table->timestamps();
+            $table->unsignedBigInteger('usuario_id');
+            $table->foreign('usuario_id')->references('id')->on('users');
+            $table->unsignedBigInteger('horario_id');
+            $table->foreign('horario_id')->references('id')->on('horarios');
+            $table->unsignedBigInteger('asignatura_id');
+            $table->foreign('asignatura_id')->references('id')->on('asignaturas');
         });
     }
 
