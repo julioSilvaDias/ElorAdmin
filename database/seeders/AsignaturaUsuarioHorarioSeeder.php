@@ -12,6 +12,6 @@ class AsignaturaUsuarioHorarioSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Asignatura_Usuario_Horario::factory()->count(10)->create();
     }
 }

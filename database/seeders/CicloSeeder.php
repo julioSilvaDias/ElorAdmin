@@ -12,6 +12,6 @@ class CicloSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Ciclo::factory()->count(10)->create();
     }
 }

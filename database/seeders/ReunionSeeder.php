@@ -12,6 +12,6 @@ class ReunionSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Reunion::factory()->count(10)->create();
     }
 }

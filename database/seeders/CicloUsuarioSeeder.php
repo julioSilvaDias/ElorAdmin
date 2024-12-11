@@ -12,6 +12,6 @@ class CicloUsuarioSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        CicloUsuario::factory()->count(10)->create();
     }
 }

@@ -12,6 +12,6 @@ class HorarioSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Horario::factory()->count(10)->create();
     }
 }
