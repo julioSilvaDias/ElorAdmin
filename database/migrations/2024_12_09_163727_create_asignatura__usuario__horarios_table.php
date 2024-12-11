@@ -16,10 +16,10 @@ return new class extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('users');
-            $table->unsignedBigInteger('horario-id');
+            $table->unsignedBigInteger('horario_id');
             $table->foreign('horario_id')->references('id')->on('horarios');
-            $table->unsignedBigInteger('asignatura-id');
-            $table->foreign('asignatura-id')->references('id')->on('asignaturas');
+            $table->unsignedBigInteger('asignatura_id');
+            $table->foreign('asignatura_id')->references('id')->on('asignaturas');
         });
     }
 
