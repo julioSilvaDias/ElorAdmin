@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Ciclo;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Ciclo>
  */
-class ciclosFactory extends Factory
+class CicloFactory extends Factory
 {
+    // Define el modelo asociado a esta fábrica
     protected $model = Ciclo::class;
+
     /**
-     * Define the model's default state.
+     * Define el estado predeterminado de la fábrica.
      *
      * @return array<string, mixed>
      */
@@ -21,7 +23,7 @@ class ciclosFactory extends Factory
         return [
             'curso' => fake()->numberBetween(1, 6),
             'nombre' => fake()->words(3, true),
-            'descripcion' => fake()->paragraph(),
+            'descripcion' => fake()->sentence(15),
         ];
     }
 }

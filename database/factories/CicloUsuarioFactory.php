@@ -2,22 +2,15 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\CicloUsuario;
 use App\Models\Ciclo;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
- */
-class Ciclo_UsuariosFactory extends Factory
+class CicloUsuarioFactory extends Factory
 {
     protected $model = CicloUsuario::class;
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+
     public function definition(): array
     {
         return [

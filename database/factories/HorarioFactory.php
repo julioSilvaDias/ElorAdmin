@@ -9,7 +9,7 @@ use App\Models\Asignatura;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class HorariosFactory extends Factory
+class HorarioFactory extends Factory
 {
     protected $model = Horario::class;
     /**

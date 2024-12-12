@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('tel-2');
             $table->string('address');
             $table->text('photo')->nullable();
-            $table->string('dni');     
+            $table->string('dni')->unique();     
             $table->string('name');     
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

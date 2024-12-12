@@ -4,11 +4,12 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Reunion;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class ReunionesFactory extends Factory
+class ReunionFactory extends Factory
 {
     protected $model = Reunion::class;
     /**
@@ -23,8 +24,8 @@ class ReunionesFactory extends Factory
             'estado' => fake()->randomElement(['aceptado', 'rechazado', 'pendiente']),
             'fecha-hora-inicio' => fake()->dateTimeBetween('-1 year', 'now'), 
             'fecha-hora-fin' => fake()->dateTimeBetween('now', '+1 year'),
-            'emisor_id' => fake()->optional()->numberBetween(1, 100),
-            'receptor_id' => fake()->optional()->numberBetween(1, 100),
+            'emisor_id' => User::inRandomOrder()->first()->id, // Asigna un emisor existente aleatorio
+            'receptor_id' => User::inRandomOrder()->first()->id,
         ];
     }
 }
