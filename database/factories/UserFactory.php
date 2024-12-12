@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\Rol;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -38,6 +39,7 @@ class UserFactory extends Factory
             'email_verified_at' => fake()->optional()->dateTime(),
             'password' => bcrypt('password'),
             'remember_token' => Str::random(10),
+            'role_id' => Rol::inRandomOrder()->first()->id,
         ];
     }
 

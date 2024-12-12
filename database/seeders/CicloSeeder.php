@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Ciclo;
+use Illuminate\Support\Facades\DB;
+
 
 class CicloSeeder extends Seeder
 {
@@ -12,6 +14,27 @@ class CicloSeeder extends Seeder
      */
     public function run(): void
     {
-        Ciclo::factory()->count(10)->create();
-    }
-}
+        DB::table('ciclos')->insert([
+            [
+                'curso' => 2,
+                'nombre' => 'curso1',
+                'descripcion' => 'descripcion1',
+            ],
+        ]);
+
+        DB::table('ciclos')->insert([
+            [
+                'curso' => 4,
+                'nombre' => 'curso2',
+                'descripcion' => 'descripcion2',
+            ],
+        ]);
+
+        DB::table('ciclos')->insert([
+            [
+                'curso' => 1,
+                'nombre' => 'curso3',
+                'descripcion' => 'descripcion3',
+            ],
+        ]);
+}}

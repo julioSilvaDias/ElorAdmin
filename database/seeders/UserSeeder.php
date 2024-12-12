@@ -26,6 +26,12 @@ class UserSeeder extends Seeder
             "password"=>"admin",
         ]);
 
-        User::factory()->count(50)->create();
+        User::factory()->count(50)->state([
+            'role_id' => 4,
+        ])->create();
+
+        User::factory()->count(20)->state([
+            'role_id' => 3,
+        ])->create();
     }
 }

@@ -12,6 +12,6 @@ class Ciclo extends Model
 
     public function ciclo_usuarios(): MorphToMany
     {
-        return $this->morphToMany(Ciclo_usuario::class, 'ciclo_usuario');
+        return $this->morphToMany(CicloUsuario::class, 'ciclo_Usuario');
     }
 }

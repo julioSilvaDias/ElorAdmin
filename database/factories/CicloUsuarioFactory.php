@@ -14,8 +14,8 @@ class CicloUsuarioFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => $this->faker->unique()->randomNumber(),
-            'fecha-matricula' => $this->faker->dateTimeThisYear(),
+            'id' => fake()->unique()->randomNumber(),
+            'fecha-matricula' => fake()->dateTimeThisYear(),
             'ciclo-id' => Ciclo::inRandomOrder()->first()->id,
             'usuario-id' => User::inRandomOrder()->first()->id,
         ];
