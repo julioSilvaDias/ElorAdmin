@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reuniones', function (Blueprint $table) {
+        Schema::create('reunions', function (Blueprint $table) {
             $table->id();
             $table->String("comentario");
             $table->enum('estado', ['aceptado', 'rechazado', 'pendiente'])->default('pendiente');

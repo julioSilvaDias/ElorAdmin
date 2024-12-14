@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Horario extends Model
 {
+    use HasFactory;
     public function usuariosAsignaturas()
 {
     return $this->belongsToMany(Usuario::class, 'asignatura_usuario_horario')
