@@ -19,19 +19,22 @@ class AsignaturaSeeder extends Seeder
         DB::table('asignaturas')->insert([
             "nombre"=>"asignatura1",
             "descripcion"=>"descripcion1",
-            "ciclo_id" => "1"
+            "ciclo_id" => "1",
+            "created_at"=>now()
         ]);
 
         DB::table('asignaturas')->insert([
             "nombre"=>"asignatura2",
             "descripcion"=>"descripcion2",
-            "ciclo_id" => "2"
+            "ciclo_id" => "2",
+            "created_at"=>now()
         ]);
 
         DB::table('asignaturas')->insert([
             "nombre"=>"asignatura3",
             "descripcion"=>"descripcion3",
-            "ciclo_id" => "3"
+            "ciclo_id" => "3",
+            "created_at"=>now()
         ]);
 
     }

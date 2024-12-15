@@ -12,7 +12,8 @@ class CicloController extends Controller
      */
     public function index()
     {
-        //
+        $ciclos = Ciclo::orderBy('created_at')->get();
+        return view('ciclos.index',['ciclos' => $ciclos]);
     }
 
     /**
@@ -20,7 +21,7 @@ class CicloController extends Controller
      */
     public function create()
     {
-        //
+        return view('ciclos.create');
     }
 
     /**
@@ -28,7 +29,12 @@ class CicloController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ciclo = new Ciclo();
+        $ciclo->nombre = $request->nombre;
+        $ciclo->curso = $request->curso;
+        $ciclo->descripcion = $request->descripcion;
+        $ciclo->save();
+        return redirect()->route('ciclos.index');
     }
 
     /**
@@ -36,7 +42,7 @@ class CicloController extends Controller
      */
     public function show(Ciclo $ciclo)
     {
-        //
+        return view('ciclos.show',['ciclo'=>$ciclo]);
     }
 
     /**
@@ -44,7 +50,7 @@ class CicloController extends Controller
      */
     public function edit(Ciclo $ciclo)
     {
-        //
+        return view('ciclos.edit',['ciclo'=>$ciclo]);
     }
 
     /**
@@ -52,7 +58,11 @@ class CicloController extends Controller
      */
     public function update(Request $request, Ciclo $ciclo)
     {
-        //
+        $ciclo->nombre = $request->nombre;
+        $ciclo->curso = $request->curso;
+        $ciclo->descripcion = $request->descripcion;
+        $ciclo->save();
+        return view('ciclos.show',['ciclo'=>$ciclo]);
     }
 
     /**
@@ -60,6 +70,7 @@ class CicloController extends Controller
      */
     public function destroy(Ciclo $ciclo)
     {
-        //
+        $ciclo->delete();
+        return redirect()->route('ciclos.index');
     }
 }

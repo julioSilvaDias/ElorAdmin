@@ -19,6 +19,7 @@ class CicloSeeder extends Seeder
                 'curso' => 2,
                 'nombre' => 'curso1',
                 'descripcion' => 'descripcion1',
+                "created_at"=>now()
             ],
         ]);
 
@@ -27,6 +28,7 @@ class CicloSeeder extends Seeder
                 'curso' => 4,
                 'nombre' => 'curso2',
                 'descripcion' => 'descripcion2',
+                "created_at"=>now()
             ],
         ]);
 
@@ -35,6 +37,7 @@ class CicloSeeder extends Seeder
                 'curso' => 1,
                 'nombre' => 'curso3',
                 'descripcion' => 'descripcion3',
+                "created_at"=>now()
             ],
         ]);
 }}
