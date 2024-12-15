@@ -12,7 +12,8 @@ class RolController extends Controller
      */
     public function index()
     {
-        //
+        $rols = Rol::orderBy('id')->get();
+        return view('rols.index',['rols' => $rols]);
     }
 
     /**
@@ -20,7 +21,7 @@ class RolController extends Controller
      */
     public function create()
     {
-        //
+        return view('rols.create');
     }
 
     /**
@@ -28,7 +29,11 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rol = new Rol();
+        $rol->name = $request->name;
+        $rol->save();
+
+        return redirect()->route('rol.index');
     }
 
     /**
@@ -36,7 +41,8 @@ class RolController extends Controller
      */
     public function show(Rol $rol)
     {
-        //
+        return view('rols.show',['rol'->$rol]);
+
     }
 
     /**
@@ -44,7 +50,7 @@ class RolController extends Controller
      */
     public function edit(Rol $rol)
     {
-        //
+        return view('rols.edit', ['rol'=>$rol]);
     }
 
     /**
@@ -52,7 +58,8 @@ class RolController extends Controller
      */
     public function update(Request $request, Rol $rol)
     {
-        //
+        $rol->name = $request->name;
+        $rol->save();
     }
 
     /**
@@ -60,6 +67,7 @@ class RolController extends Controller
      */
     public function destroy(Rol $rol)
     {
-        //
+        $rol->delete();
+        return redirect()->route('rols.index');
     }
 }
