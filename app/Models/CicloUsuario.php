@@ -9,13 +9,18 @@ class CicloUsuario extends Model
 {
     use HasFactory;
     
-    public function ciclos()
+    protected $table = 'ciclo_usuario';
+    protected $fillable = ['id_ciclo', 'id_usuario'];
+
+    // Relación con Ciclo
+    public function ciclo()
     {
-        return $this->morphToMany(Ciclo::class, 'ciclo_usuario');
+        return $this->belongsTo(Ciclo::class, 'id_ciclo');
     }
 
-    public function users()
+    // Relación con User
+    public function usuario()
     {
-        return $this->morphToMany(User::class, 'ciclo_usuario');
+        return $this->belongsTo(User::class, 'id_usuario');
     }
 }

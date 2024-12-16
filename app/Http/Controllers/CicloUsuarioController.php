@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ciclo_usuario;
+use App\Models\CicloUsuario;
+use App\Models\Ciclo;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CicloUsuarioController extends Controller
@@ -12,16 +14,11 @@ class CicloUsuarioController extends Controller
      */
     public function index()
     {
-        //
-        return response()->json(CicloUsuario::all());
-    }
+        // Cargar las relaciones 'ciclo' y 'usuario'
+        $cicloUsuarios = CicloUsuario::with(['ciclo', 'usuario'])->get();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        
+        return view('cicloUsuario.index', compact('cicloUsuarios'));
     }
 
     /**
@@ -29,68 +26,86 @@ class CicloUsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validación de los datos
         $request->validate([
             'id_ciclo' => 'required|exists:ciclos,id',
             'id_usuario' => 'required|exists:users,id',
         ]);
 
-        $cicloUsuario = CicloUsuario::create($request->only(['id_ciclo', 'id_usuario']));
-        return response()->json(['message' => 'El usuario se ha matriculado correctamente', 'data' => $cicloUsuario], 201);
+        // Creación del registro
+        CicloUsuario::create([
+            'id_ciclo' => $request->id_ciclo,
+            'id_usuario' => $request->id_usuario,
+        ]);
+
+        // Redirigir con un mensaje de éxito
+        return redirect()->route('cicloUsuario.index')->with('success', 'El usuario se ha matriculado correctamente');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        // Obtener todos los ciclos y usuarios
+        $ciclos = Ciclo::all();
+        $usuarios = User::all();
+
+        // Pasar los datos a la vista 'ciclo-usuario.create'
+        return view('cicloUsuario.create', compact('ciclos', 'usuarios'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(ciclo_usuario $ciclo_usuario)
+    public function show(CicloUsuario $ciclo_usuario)
     {
-        //
-        $cicloUsuario = CicloUsuario::where('id_usuario', $id)->get();
-
-        if ($cicloUsuario->isEmpty()) {
-            return response()->json(['message' => 'No se encontraron registros'], 404);
-        }
-
-        return response()->json($cicloUsuario);
+        // Mostrar detalles de un registro específico
+        return view('cicloUsuario.show', compact('ciclo_usuario'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ciclo_usuario $ciclo_usuario)
+    public function edit(CicloUsuario $ciclo_usuario)
     {
-        //
+        // Obtener todos los ciclos y usuarios disponibles
+        $ciclos = Ciclo::all();
+        $usuarios = User::all();
+
+        // Mostrar el formulario de edición con los datos actuales
+        return view('cicloUsuario.edit', compact('ciclo_usuario', 'ciclos', 'usuarios'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ciclo_usuario $ciclo_usuario)
+    public function update(Request $request, CicloUsuario $ciclo_usuario)
     {
-        //
-        $cicloUsuario = CicloUsuario::find($id);
+        // Validación de los datos
+        $request->validate([
+            'id_ciclo' => 'required|exists:ciclos,id',
+            'id_usuario' => 'required|exists:users,id',
+        ]);
 
-        if (!$cicloUsuario) {
-            return response()->json(['message' => 'Registro no encontrado'], 404);
-        }
+        // Actualizar los valores del ciclo y usuario
+        $ciclo_usuario->id_ciclo = $request->id_ciclo;
+        $ciclo_usuario->id_usuario = $request->id_usuario;
 
-        $cicloUsuario->update($request->only(['id_ciclo', 'id_usuario']));
-        return response()->json(['message' => 'Los datos se han actualizado', 'data' => $cicloUsuario]);
+        // Guardar los cambios en el registro
+        $ciclo_usuario->save();
+
+        // Redirigir con un mensaje de éxito
+        return redirect()->route('cicloUsuario.index')->with('success', 'Los datos del ciclo usuario se han actualizado correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ciclo_usuario $ciclo_usuario)
+    public function destroy(CicloUsuario $ciclo_usuario)
     {
-        //
-        $cicloUsuario = CicloUsuario::find($id);
+        // Elimina el registro
+        $ciclo_usuario->delete();
 
-        if (!$cicloUsuario) {
-            return response()->json(['message' => 'Registro no encontrado'], 404);
-        }
-
-        $cicloUsuario->delete();
-        return response()->json(['message' => 'Se ha eliminado la matriculación.']);
+        // Redirige a la lista de registros con mensaje de éxito
+        return redirect()->route('cicloUsuario.index')->with('success', 'Se ha eliminado la matriculación.');
     }
 }
