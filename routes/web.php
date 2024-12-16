@@ -28,3 +28,6 @@ Route::controller(RolController::class)->group(function (){
     Route::put('/rols/{rol}', 'update')->name('rols.update');
     Route::delete('/rols/{rol}', 'destroy')->name('rols.destroy');
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
