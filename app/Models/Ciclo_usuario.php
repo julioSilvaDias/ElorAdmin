@@ -4,13 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ciclo_usuario extends Model
+class CicloUsuario extends Model
 {
-    public function ciclos(): MorphToMany{
-        return $this->morphTomany(Ciclo::class, 'ciclo_usuario');
+    protected $table = 'ciclo_usuario';
+    protected $fillable = ['id_ciclo', 'id_usuario'];
+
+    // Relación con Ciclo
+    public function ciclo()
+    {
+        return $this->belongsTo(Ciclo::class, 'id_ciclo');
     }
 
-    public function users(): MorphToMany{
-        return $this->morphTomany(User::class, 'ciclo_usuario');
+    // Relación con User
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'id_usuario');
     }
 }
