@@ -18,13 +18,12 @@ return new class extends Migration
             $table->string('tel-1');
             $table->string('tel-2');
             $table->string('address');
-            $table->base64_decode('photo')->nullable();
-            $table->string('dni');     
+            $table->text('photo')->nullable();
+            $table->string('dni')->unique();     
             $table->string('name');     
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreign('rol-id')->references('id')->on('roles');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

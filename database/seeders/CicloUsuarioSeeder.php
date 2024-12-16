@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\CicloUsuario;
+use App\Models\Ciclo;
+use App\Models\User;
 
 class CicloUsuarioSeeder extends Seeder
 {
@@ -12,6 +14,6 @@ class CicloUsuarioSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        CicloUsuario::factory()->count(10)->create();
     }
 }

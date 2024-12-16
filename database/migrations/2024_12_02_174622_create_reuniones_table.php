@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reuniones', function (Blueprint $table) {
+        Schema::create('reunions', function (Blueprint $table) {
             $table->id();
             $table->String("comentario");
             $table->enum('estado', ['aceptado', 'rechazado', 'pendiente'])->default('pendiente');
             $table->timestamp('fecha-hora-inicio');
             $table->timestamp('fecha-hora-fin');
-            $table->foreign('emisor-id')->references('id')->on('users');
-            $table->foreign('receptor-id')->references('id')->on('users');
-
-
+            $table->unsignedBigInteger('emisor_id')->nullable();
+            $table->foreign('emisor_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('receptor_id')->nullable();
+            $table->foreign('receptor_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
