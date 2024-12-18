@@ -33,7 +33,7 @@ class RolController extends Controller
         $rol->name = $request->name;
         $rol->save();
 
-        return redirect()->route('rol.index');
+        return redirect()->route('rols.index');
     }
 
     /**
