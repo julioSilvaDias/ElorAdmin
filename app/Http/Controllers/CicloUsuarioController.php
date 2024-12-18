@@ -16,7 +16,6 @@ class CicloUsuarioController extends Controller
     {
         // Cargar las relaciones 'ciclo' y 'usuario'
         $cicloUsuarios = CicloUsuario::with(['ciclo', 'usuario'])->get();
-
         
         return view('cicloUsuario.index', compact('cicloUsuarios'));
     }
@@ -58,19 +57,19 @@ class CicloUsuarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CicloUsuario $ciclo_usuario)
+    public function show($id)
     {
-        // Mostrar detalles de un registro específico
-        return view('cicloUsuario.show', compact('ciclo_usuario'));
+        $cicloUsuario = CicloUsuario::with(['ciclo', 'usuario'])->findOrFail($id);
+        return view('cicloUsuario.show', compact('cicloUsuario'));
     }
 
-    public function edit(CicloUsuario $ciclo_usuario)
+    public function edit($id)
     {
-        // Obtener todos los ciclos y usuarios disponibles
+        $ciclo_usuario = CicloUsuario::with(['ciclo', 'usuario'])->findOrFail($id);
+
         $ciclos = Ciclo::all();
         $usuarios = User::all();
 
-        // Mostrar el formulario de edición con los datos actuales
         return view('cicloUsuario.edit', compact('ciclo_usuario', 'ciclos', 'usuarios'));
     }
 

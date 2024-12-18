@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ciclo_usuario', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
+            $table->id();
             $table->timestamp('fecha_matricula');
             $table->timestamps();
             $table->softDeletes();
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('ciclo_id')->references('id')->on('ciclos');
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('users');
-            $table->primary(['id', 'ciclo_id', 'usuario_id', 'fecha_matricula']);
+            $table->unique(['ciclo_id', 'usuario_id', 'fecha_matricula']);
         });
     }
 
