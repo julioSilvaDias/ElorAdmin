@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Rol;
 
 class UserController extends Controller
 {
@@ -48,7 +49,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show',['user'=>$user]);
+        $rol = $user->roles;
+        return view('users.show',['user'=>$user, 'rol'=>$rol]);
     }
 
     /**

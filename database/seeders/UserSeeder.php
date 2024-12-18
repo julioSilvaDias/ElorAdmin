@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
             "name"=>"godName",
             "email"=>"GodEmail@gmail.com",
             "password"=>"admin",
+            "role_id"=>"1"
         ]);
 
         User::factory()->count(50)->state([

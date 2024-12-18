@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
     <h1>Lista de Roles</h1>
     <a href="{{ route('rols.create') }}" class="btn btn-primary">Crear Rol</a>
 
@@ -32,4 +33,5 @@
             @endforeach
         </tbody>
     </table>
+</div>
 @endsection

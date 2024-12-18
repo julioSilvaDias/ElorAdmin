@@ -41,7 +41,7 @@ class RolController extends Controller
      */
     public function show(Rol $rol)
     {
-        return view('rols.show',['rol'->$rol]);
+        return view('rols.show',['rol'=>$rol]);
 
     }
 
