@@ -17,18 +17,18 @@
                     <strong>ID:</strong> {{ $cicloUsuario->id }} <br>                                                       
                     <strong>Fecha Matrícula:</strong> {{ $cicloUsuario->{'fecha-matricula'} }} <br>
                     <strong>Nombre Ciclo:</strong>
-                        @if ($cicloUsuario->ciclo)
-                            {{ $cicloUsuario->ciclo->nombre }}
-                        @else
-                            <span class="text-muted">Ciclo no disponible</span>
-                        @endif
-                        <br>
+                    @if ($cicloUsuario->ciclo)
+                        {{ $cicloUsuario->ciclo->nombre }}
+                    @else
+                        <span class="text-muted">Ciclo no disponible</span>
+                    @endif
+                    <br>
                     <strong>Nombre del Usuario:</strong>
-                        @if ($cicloUsuario->user)
-                            {{ $cicloUsuario->user->name }}
-                        @else
-                            <span class="text-muted">Usuario no disponible</span>
-                        @endif
+                    @if ($cicloUsuario->user)
+                        {{ $cicloUsuario->user->name }}
+                    @else
+                        <span class="text-muted">Usuario no disponible</span>
+                    @endif
                     <br>
                     <span class="text-muted">Escrito el {{ $cicloUsuario->created_at->format('Y-m-d H:i:s') }}</span>
                 </div>

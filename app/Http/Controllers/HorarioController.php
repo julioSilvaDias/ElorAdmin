@@ -12,7 +12,9 @@ class HorarioController extends Controller
      */
     public function index()
     {
-        //
+        $horarios = Horario::all();
+
+        return view('horarios.index', compact('horarios'));
     }
 
     /**
@@ -20,7 +22,7 @@ class HorarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('horarios.create');
     }
 
     /**
@@ -28,7 +30,15 @@ class HorarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'dia-semana' => 'required|in:lunes,martes,miércoles,jueves,viernes',
+            'hora' => 'required|in:1,2,3,4,5,6',
+            'asignatura_id' => 'required|exists:asignaturas,id',
+        ]);
+
+        Horario::create($request->all());
+
+        return redirect()->route('horarios.index')->with('success', 'Horario creado exitosamente');
     }
 
     /**
@@ -36,7 +46,7 @@ class HorarioController extends Controller
      */
     public function show(Horario $horario)
     {
-        //
+       return view('horarios.show', compact('horario'));
     }
 
     /**
@@ -44,7 +54,8 @@ class HorarioController extends Controller
      */
     public function edit(Horario $horario)
     {
-        //
+        $horario = Horario::findOrFail($id);
+        return view('horarios.edit', compact('horario'));
     }
 
     /**
@@ -52,7 +63,16 @@ class HorarioController extends Controller
      */
     public function update(Request $request, Horario $horario)
     {
-        //
+        $request->validate([
+            'dia-semana' => 'required|in:lunes,martes,miércoles,jueves,viernes',
+            'hora' => 'required|in:1,2,3,4,5,6',
+            'asignatura_id' => 'required|exists:asignaturas,id',
+        ]);
+
+        $horario = Horario::findOrFail($id);
+        $horario->update($request->all());
+
+        return redirect()->route('horarios.index')->with('success', 'Horario actualizado exitosamente');
     }
 
     /**
@@ -60,6 +80,9 @@ class HorarioController extends Controller
      */
     public function destroy(Horario $horario)
     {
-        //
+        $horario = Horario::findOrFail($id);
+        $horario->delete();
+
+        return redirect()->route('horarios.index')->with('success', 'Horario eliminado exitosamente');
     }
 }
