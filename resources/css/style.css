@@ -1,12 +1,8 @@
-/*@tailwind base;
-@tailwind components;
-@tailwind utilities;*/
-
 :root {
     --primary-color: #211261;
     --secondary-color: #008aab;
     --accent-color: #3cb4e5;
-    --light-blue: #a0d3e4;
+    --light-blue: #d6f5ff;
 }
 
 body {
@@ -16,7 +12,7 @@ body {
 }
 
 .navbar {
-    background-color: var(--light-blue);
+    background-color: var(--primary-color);
     min-height: 80px; 
 }
 
@@ -80,16 +76,3 @@ body {
     color: #fff;
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: #ffffff; 
-}
-
-.table-striped tbody tr:nth-of-type(even) {
-    background-color: var(--light-blue); 
-}
-
-/* Hover en filas */
-.table-hover tbody tr:hover {
-    background-color: var(--accent-color);
-    color: #ffffff;
-}
