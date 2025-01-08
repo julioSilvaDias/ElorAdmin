@@ -67,12 +67,11 @@ class CicloUsuarioController extends Controller
     {
         $ciclo_usuario = CicloUsuario::with(['ciclo', 'usuario'])->findOrFail($id);
 
-        $ciclos = Ciclo::all();
-        $usuarios = User::all();
+    $ciclos = Ciclo::all();
+    $usuarios = User::all();
 
-        return view('cicloUsuario.edit', compact('ciclo_usuario', 'ciclos', 'usuarios'));
+    return view('cicloUsuario.edit', compact('ciclo_usuario', 'ciclos', 'usuarios'));
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -105,6 +104,6 @@ class CicloUsuarioController extends Controller
         $ciclo_usuario->delete();
 
         // Redirige a la lista de registros con mensaje de éxito
-        return redirect()->route('cicloUsuario.index')->with('success', 'Se ha eliminado la matriculación.');
+        return redirect()->route('ciclo-usuario.index')->with('success', 'El ciclo usuario ha sido eliminado correctamente');
     }
 }
