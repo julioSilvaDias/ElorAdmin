@@ -1,3 +1,4 @@
+@extends('layouts.general')
 <!DOCTYPE html>
 <html>
 <head>

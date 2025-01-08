@@ -1,3 +1,5 @@
+@extends('layouts.general')
+
 <form action="{{ route('ciclo_usuario.update', $ciclo_usuario->id) }}" method="POST">
     @csrf
     @method('PUT') <!-- Indicamos que es una actualización -->

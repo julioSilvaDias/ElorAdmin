@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.general')
 
 @section('content')
 <h1>Lista de Horarios</h1>

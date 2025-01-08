@@ -1,3 +1,4 @@
+@extends('layouts.general')
 <form action="{{ $action }}" method="POST">
     @csrf
     @if($method === 'PUT')

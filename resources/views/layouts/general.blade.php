@@ -8,10 +8,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', config('app.name', 'Laravel'))</title>
+    <title>@yield('title', config('app.name', 'Elorrieta Errekamari'))</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('images/logo_vertical.jpg') }}" type="image/svg">
+    <link rel="icon" href="{{ asset('images/EEM-Logo-vertical.png') }}" type="image/svg">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -49,9 +49,28 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
                         </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('rols.index') }}">Roles</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('reunions.index') }}">Reuniones</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('horarios.index') }}">Horarios</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('ciclos.index') }}">Ciclos</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('asignaturas.index') }}">Asignaturas</a>
+                        </li>
+
+
                         <!--otros enlaces -->
                     </ul>
 

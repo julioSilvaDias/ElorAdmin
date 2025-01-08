@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.general')
 @section('content')
 <div class=container>
     <h1>{{$asignatura_Usuario_Horario->usuario_id}}</h1>
