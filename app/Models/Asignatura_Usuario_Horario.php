@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class AsignaturaUsuarioHorario extends Model
+class Asignatura_Usuario_Horario extends Model
 {
     use HasFactory;
-    protected $table = 'asignaturaUsuarioHorario'; 
+    protected $table = 'asignatura_usuario_horario'; 
 
     
 }

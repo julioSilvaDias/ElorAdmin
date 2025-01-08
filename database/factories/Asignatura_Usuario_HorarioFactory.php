@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\AsignaturaUsuarioHorario;
+use App\Models\Asignatura_Usuario_Horario;
 use App\Models\User;
 use App\Models\Horario;
 use App\Models\Asignatura;
@@ -11,9 +11,9 @@ use App\Models\Asignatura;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class AsignaturaUsuarioHorarioFactory extends Factory
+class Asignatura_Usuario_HorarioFactory extends Factory
 {
-    protected $model = AsignaturaUsuarioHorario::class;
+    protected $model = Asignatura_Usuario_Horario::class;
     /**
      * Define the model's default state.
      *

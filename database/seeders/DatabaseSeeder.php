@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             HorarioSeeder::class,
             ReunionSeeder::class,
             CicloUsuarioSeeder::class,
-            AsignaturaUsuarioHorarioSeeder::class,
+            Asignatura_Usuario_HorarioSeeder::class,
         ]);
     }
 }

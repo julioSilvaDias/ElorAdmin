@@ -12,7 +12,8 @@ class AsignaturaController extends Controller
      */
     public function index()
     {
-        //
+        $asignaturas = Asignatura::orderBy('created_at')->get();
+        return view('asignaturas.index',['asignaturas' => $asignaturas]);
     }
 
     /**
@@ -20,7 +21,7 @@ class AsignaturaController extends Controller
      */
     public function create()
     {
-        //
+        return view('asignaturas.create');
     }
 
     /**
@@ -28,7 +29,12 @@ class AsignaturaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $asignatura = new Asignatura();
+        $asignatura->nombre = $request->nombre;
+        $asignatura->descripcion = $request->descripcion;
+        $asignatura->ciclo_id = $request->ciclo_id;
+        $asignatura->save();
+        return redirect()->route('asignaturas.index');
     }
 
     /**
@@ -36,7 +42,7 @@ class AsignaturaController extends Controller
      */
     public function show(Asignatura $asignatura)
     {
-        //
+        return view('asignaturas.show',['asignatura'=>$asignatura]);
     }
 
     /**
@@ -44,7 +50,7 @@ class AsignaturaController extends Controller
      */
     public function edit(Asignatura $asignatura)
     {
-        //
+        return view('asignaturas.edit',['asignatura'=>$asignatura]);
     }
 
     /**
@@ -52,7 +58,11 @@ class AsignaturaController extends Controller
      */
     public function update(Request $request, Asignatura $asignatura)
     {
-        //
+        $asignatura->nombre = $request->nombre;
+        $asignatura->descripcion = $request->descripcion;
+        $asignatura->ciclo_id = $request->ciclo_id;
+        $asignatura->save();
+        return view('asignaturas.show',['asignatura'=>$asignatura]);
     }
 
     /**
@@ -60,6 +70,7 @@ class AsignaturaController extends Controller
      */
     public function destroy(Asignatura $asignatura)
     {
-        //
+        $asignatura->delete();
+        return redirect()->route('asignaturas.index');
     }
 }
