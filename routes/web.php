@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(UserController::class)->group(function (){
+Route::controller(UserController::class)->group(function () {
     Route::get('/users', 'index')->name('users.index');
     Route::get('/users/create', 'create')->name('users.create');
     Route::post('/users', 'store')->name('users.store');
@@ -19,7 +19,7 @@ Route::controller(UserController::class)->group(function (){
 });
 
 
-Route::controller(RolController::class)->group(function (){
+Route::controller(RolController::class)->group(function () {
     Route::get('/rols', 'index')->name('rols.index');
     Route::get('/rols/create', 'create')->name('rols.create');
     Route::post('/rols', 'store')->name('rols.store');
