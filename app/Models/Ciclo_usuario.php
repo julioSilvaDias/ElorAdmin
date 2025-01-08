@@ -3,24 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CicloUsuario extends Model
 {
-    use HasFactory;
-    
     protected $table = 'ciclo_usuario';
-    protected $fillable = ['id_ciclo', 'id_usuario'];
+    protected $fillable = ['fecha_matricula', 'ciclo_id', 'usuario_id'];
 
     // Relación con Ciclo
     public function ciclo()
     {
-        return $this->belongsTo(Ciclo::class, 'id_ciclo');
+        return $this->belongsTo(Ciclo::class, 'ciclo_id');
     }
 
     // Relación con User
     public function usuario()
     {
-        return $this->belongsTo(User::class, 'id_usuario');
+        return $this->belongsTo(User::class, 'usuario_id');
     }
 }

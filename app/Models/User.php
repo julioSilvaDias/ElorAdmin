@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -31,8 +31,14 @@ class User extends Authenticatable
         return $this->hasMany(Reunion::class);
     }
 
-    public function ciclo_usuarios(): MorphToMany{
-        return $this->morphTomany(Ciclo_usuario::class, 'ciclo_usuario');
+    public function ciclos()
+    {
+        return $this->belongsToMany(Ciclo::class, 'ciclo_usuario', 'id_usuario', 'id_ciclo');
+    }
+
+    public function cicloUsuarios()
+    {
+        return $this->hasMany(CicloUsuario::class, 'id_usuario');
     }
 
     /**

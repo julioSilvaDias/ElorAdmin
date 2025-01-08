@@ -15,9 +15,9 @@ class CicloUsuarioFactory extends Factory
     {
         return [
             'id' => fake()->unique()->randomNumber(),
-            'fecha-matricula' => fake()->dateTimeThisYear(),
-            'ciclo-id' => Ciclo::inRandomOrder()->first()->id,
-            'usuario-id' => User::inRandomOrder()->first()->id,
+            'fecha_matricula' => fake()->dateTimeThisYear(),
+            'ciclo_id' => Ciclo::inRandomOrder()->first()->id,
+            'usuario_id' => User::inRandomOrder()->first()->id,
         ];
     }
 }

@@ -12,7 +12,10 @@ class ReunionController extends Controller
      */
     public function index()
     {
-        //
+        //Cargar las reuniones
+        $reunions = Reunion::all();
+
+        return view('reunions.index', ['reunions' => $reunions]);
     }
 
     /**
@@ -20,7 +23,7 @@ class ReunionController extends Controller
      */
     public function create()
     {
-        //
+        return view('reunions.create');
     }
 
     /**
@@ -28,15 +31,26 @@ class ReunionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Crear una nueva reunión
+        $reunion = new Reunion();
+        $reunion->comentario = $request->input('comentario');
+        $reunion->estado = $request->input('estado', 'pendiente'); // Valor por defecto: 'pendiente'
+        $reunion->{'fecha-hora-inicio'} = $request->input('fecha-hora-inicio');
+        $reunion->{'fecha-hora-fin'} = $request->input('fecha-hora-fin');
+        $reunion->emisor_id = $request->input('emisor_id');
+        $reunion->receptor_id = $request->input('receptor_id');
+        $reunion->save();
+
+        return redirect()->route('reunions.index')->with('success', 'Reunión creada correctamente.');
     }
+
 
     /**
      * Display the specified resource.
      */
     public function show(Reunion $reunion)
     {
-        //
+        return view('reunions.show', compact('reunion'));
     }
 
     /**
@@ -44,7 +58,7 @@ class ReunionController extends Controller
      */
     public function edit(Reunion $reunion)
     {
-        //
+        return view ('reunions.edit',['reunion'=>$reunion]);
     }
 
     /**
@@ -52,7 +66,16 @@ class ReunionController extends Controller
      */
     public function update(Request $request, Reunion $reunion)
     {
-        //
+        // Actualizar los campos de la reunión
+        $reunion->comentario = $request->input('comentario');
+        $reunion->estado = $request->input('estado', $reunion->estado);
+        $reunion->{'fecha-hora-inicio'} = $request->input('fecha-hora-inicio');
+        $reunion->{'fecha-hora-fin'} = $request->input('fecha-hora-fin');
+        $reunion->emisor_id = $request->input('emisor_id');
+        $reunion->receptor_id = $request->input('receptor_id');
+        $reunion->save();
+        
+        return redirect()->route('reunions.index')->with('success', 'Reunión actualizada correctamente.');
     }
 
     /**
@@ -60,6 +83,8 @@ class ReunionController extends Controller
      */
     public function destroy(Reunion $reunion)
     {
-        //
+        $reunion->delete();
+
+        return redirect()->route('reunions.index');
     }
 }
