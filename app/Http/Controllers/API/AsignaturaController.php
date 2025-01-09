@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Asignatura;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class AsignaturaController extends Controller
 {
@@ -13,7 +14,9 @@ class AsignaturaController extends Controller
      */
     public function index()
     {
-        //
+        $asignaturas = Asignatura::orderBy('created_at')->get();
+        return response()->json(['asignaturas' => $asignaturas])
+            ->setStatusCode(Response::HTTP_OK);
     }
 
     /**
@@ -21,7 +24,15 @@ class AsignaturaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $asignatura = new Asignatura();
+        $asignatura->nombre = $request->nombre;
+        $asignatura->descripcion = $request->descripcion;
+        $asignatura->ciclo_id = $request->ciclo_id;
+        $asignatura->save();
+        return response()->json([
+            'message' => 'Recurso creado correctamente',
+            'data' => $asignatura
+        ], Response::HTTP_CREATED);
     }
 
     /**
@@ -29,7 +40,7 @@ class AsignaturaController extends Controller
      */
     public function show(Asignatura $asignatura)
     {
-        //
+        return response()->json($asignatura)->setStatusCode(Response::HTTP_OK);
     }
 
     /**
@@ -37,7 +48,14 @@ class AsignaturaController extends Controller
      */
     public function update(Request $request, Asignatura $asignatura)
     {
-        //
+        $asignatura->nombre = $request->nombre;
+        $asignatura->descripcion = $request->descripcion;
+        $asignatura->ciclo_id = $request->ciclo_id;
+        $asignatura->save();
+        return response()->json([
+            'message' => 'Recurso actualizado correctamente',
+            'data' => $asignatura
+        ], Response::HTTP_OK);
     }
 
     /**
@@ -45,6 +63,9 @@ class AsignaturaController extends Controller
      */
     public function destroy(Asignatura $asignatura)
     {
-        //
+        $asignatura->delete();
+        return response()->json([
+            'message' => 'Recurso creado correctamente',
+        ], Response::HTTP_OK);
     }
 }
