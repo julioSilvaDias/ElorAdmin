@@ -6,9 +6,18 @@
     @csrf
     @method('PUT')
     <div class="form-group mb-3">
+          <select name="ciclo_id">
+            @foreach ($ciclos as $ciclo)
+                <option value="{{ $ciclo->id }}"
+                
+                @if ($ciclo->id == old('myselect', $asignatura->ciclo_id))
+                    selected="selected"
+                @endif
+
+                >{{ $ciclo->nombre }}</option>
+            @endforeach
+        </select>
         <label for="ciclo_id" class="form-label">Ciclo</label>
-        <input type="number" class="form-sm" id="ciclo_id" name="ciclo_id" required
-            value="{{$asignatura->ciclo_id}}"/>
       </div>
       <div class="form-group mb-3">
         <label for="nombre" class="form-label">Nombre</label>

@@ -31,10 +31,9 @@ class ReunionController extends Controller
      */
     public function store(Request $request)
     {
-        // Crear una nueva reunión
         $reunion = new Reunion();
         $reunion->comentario = $request->input('comentario');
-        $reunion->estado = $request->input('estado', 'pendiente'); // Valor por defecto: 'pendiente'
+        $reunion->estado = $request->input('estado', 'pendiente');
         $reunion->{'fecha-hora-inicio'} = $request->input('fecha-hora-inicio');
         $reunion->{'fecha-hora-fin'} = $request->input('fecha-hora-fin');
         $reunion->emisor_id = $request->input('emisor_id');
