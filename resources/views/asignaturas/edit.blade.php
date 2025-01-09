@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.general')
 @section('content')
 <div class="container">
   <form class="mt-2" name="create_platform" action="{{route('asignaturas.update',$asignatura)}}"

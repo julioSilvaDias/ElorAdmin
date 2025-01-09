@@ -46,7 +46,7 @@ class HorarioController extends Controller
      */
     public function show(Horario $horario)
     {
-       return view('horarios.show', compact('horario'));
+        return view('horarios.show', compact('horario'));
     }
 
     /**
@@ -54,8 +54,7 @@ class HorarioController extends Controller
      */
     public function edit(Horario $horario)
     {
-        $horario = Horario::findOrFail($id);
-        return view('horarios.edit', compact('horario'));
+        return view('horarios.edit', ['horario' => $horario]);
     }
 
     /**
@@ -69,7 +68,6 @@ class HorarioController extends Controller
             'asignatura_id' => 'required|exists:asignaturas,id',
         ]);
 
-        $horario = Horario::findOrFail($id);
         $horario->update($request->all());
 
         return redirect()->route('horarios.index')->with('success', 'Horario actualizado exitosamente');
@@ -80,9 +78,7 @@ class HorarioController extends Controller
      */
     public function destroy(Horario $horario)
     {
-        $horario = Horario::findOrFail($id);
         $horario->delete();
-
         return redirect()->route('horarios.index')->with('success', 'Horario eliminado exitosamente');
     }
 }

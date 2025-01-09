@@ -1,5 +1,5 @@
 <!-- resources/views/ciclo-usuario/index.blade.php -->
-@extends('layouts.app')
+@extends('layouts.general')
 
 @section('content')
 <div class="container">
