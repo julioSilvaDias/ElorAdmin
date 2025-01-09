@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Asignatura;
 use Illuminate\Http\Request;
+use App\Models\Ciclo;
 
 class AsignaturaController extends Controller
 {
@@ -21,7 +22,8 @@ class AsignaturaController extends Controller
      */
     public function create()
     {
-        return view('asignaturas.create');
+        $ciclos = Ciclo::all();
+        return view('asignaturas.create',['ciclos'=> $ciclos]);
     }
 
     /**
@@ -50,7 +52,8 @@ class AsignaturaController extends Controller
      */
     public function edit(Asignatura $asignatura)
     {
-        return view('asignaturas.edit',['asignatura'=>$asignatura]);
+        $ciclos = Ciclo::all();
+        return view('asignaturas.edit',['asignatura'=>$asignatura,'ciclos'=> $ciclos]);
     }
 
     /**

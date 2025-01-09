@@ -13,7 +13,8 @@ class HorarioController extends Controller
      */
     public function index()
     {
-        //
+        $horario = Horario::orderBy('created_at')->get();
+        return response()->json($horario);
     }
 
     /**
@@ -21,7 +22,15 @@ class HorarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'dia-semana' => 'required|in:lunes,martes,miércoles,jueves,viernes',
+            'hora' => 'required|in:1,2,3,4,5,6',
+            'asignatura_id' => 'required|exists:asignaturas,id',
+        ]);
+        $horario = Horario::create($request->all());
+        $horario::save();
+
+        return response()->json($horario);
     }
 
     /**
@@ -29,7 +38,7 @@ class HorarioController extends Controller
      */
     public function show(Horario $horario)
     {
-        //
+        return response()->json($horario);
     }
 
     /**
@@ -37,7 +46,14 @@ class HorarioController extends Controller
      */
     public function update(Request $request, Horario $horario)
     {
-        //
+        $request->validate([
+            'dia-semana' => 'required|in:lunes,martes,miércoles,jueves,viernes',
+            'hora' => 'required|in:1,2,3,4,5,6',
+            'asignatura_id' => 'required|exists:asignaturas,id',
+        ]);
+        $horario = Horario::update($request->all());
+        
+        return response()->json($horario);
     }
 
     /**
@@ -45,6 +61,7 @@ class HorarioController extends Controller
      */
     public function destroy(Horario $horario)
     {
-        //
+        $horario->delete();
+        return response()->json(['message' => 'horario eliminado con exito']);
     }
 }
