@@ -20,7 +20,6 @@ Route::apiResource('asignatura', AsignaturaController::class);
 Route::apiResource('ciclo', CicloController::class);
 Route::apiResource('ciclo-usuario', CicloUsuarioController::class);
 
-
 Route::apiResource('rol', RolController::class);
 Route::apiResource('reunion', ReunionController::class);
 Route::apiResource('user', UserController::class);
