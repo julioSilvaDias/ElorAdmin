@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Response;
 
 class UserController extends Controller
 {
@@ -13,23 +14,51 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::orderBy('created_at')->get();
+        return response()->json($user);
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
+{
+    
+    $validatedData = $request->validate([
+        'user' => 'required|string|max:255',
+        'tel1' => 'required|string|max:15',
+        'tel2' => 'nullable|string|max:15',
+        'address' => 'required|string|max:255',
+        'dni' => 'required|string|unique:users,dni|max:20',
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|string|min:8|confirmed', 
+    ]);
+
+    $user = User::create([
+        'user' => $validatedData['user'],
+        'tel1' => $validatedData['tel1'],
+        'tel2' => $validatedData['tel2'] ?? null,
+        'address' => $validatedData['address'],
+        'dni' => $validatedData['dni'],
+        'name' => $validatedData['name'],
+        'email' => $validatedData['email'],
+        'password' => bcrypt($validatedData['password']),
+    ]);
+
+    $user->save();
+
+    return response()->json($user);
+}
+
 
     /**
      * Display the specified resource.
      */
     public function show(User $user)
     {
-        //
+        return response()->json($user);
     }
 
     /**
@@ -37,7 +66,29 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $validatedData = $request->validate([
+            'user' => 'required|string|max:255',
+            'tel1' => 'required|string|max:15',
+            'tel2' => 'nullable|string|max:15',
+            'address' => 'required|string|max:255',
+            'dni' => 'required|string|unique:users,dni|max:20',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed', 
+        ]);
+    
+        $user = User::update([
+            'user' => $validatedData['user'],
+            'tel1' => $validatedData['tel1'],
+            'tel2' => $validatedData['tel2'] ?? null,
+            'address' => $validatedData['address'],
+            'dni' => $validatedData['dni'],
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => bcrypt($validatedData['password']),
+        ]);
+
+        return response()->json($user);
     }
 
     /**
@@ -45,6 +96,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return response()->json(['message' => 'Usuario eliminado con exito']);
     }
 }

@@ -111,6 +111,7 @@
             @yield('content')
         </main>
 
+        <!--
         <footer class="footer">
             <div class="container">
                 <div class="row py-4 text-white">
@@ -130,6 +131,7 @@
                 </div>
             </div>
         </footer>
+        -->
     </div>
 
     <!-- Bootstrap JS -->
