@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Asignatura_Usuario_Horario;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class Asignatura_Usuario_HorarioController extends Controller
 {
@@ -13,7 +14,12 @@ class Asignatura_Usuario_HorarioController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $asignatura_Usuario_Horarios = Asignatura_Usuario_Horario::orderBy('created_at')->get();
+            return response()->json(['asignatura_Usuario_Horarios' => $asignatura_Usuario_Horarios], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -21,7 +27,15 @@ class Asignatura_Usuario_HorarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $asignatura_Usuario_Horario = new Asignatura_Usuario_Horario();
+        $asignatura_Usuario_Horario->usuario_id = $request->usuario_id;
+        $asignatura_Usuario_Horario->horario_id = $request->horario_id;
+        $asignatura_Usuario_Horario->asignatura_id = $request->asignatura_id;
+        $asignatura_Usuario_Horario->save();
+        return response()->json([
+            'message' => 'Recurso creado correctamente',
+            'data' => $asignatura_Usuario_Horario
+        ], Response::HTTP_CREATED);
     }
 
     /**
@@ -29,7 +43,7 @@ class Asignatura_Usuario_HorarioController extends Controller
      */
     public function show(Asignatura_Usuario_Horario $asignatura_Usuario_Horario)
     {
-        //
+        return response()->json($asignatura_Usuario_Horario)->setStatusCode(Response::HTTP_OK);
     }
 
     /**
@@ -37,7 +51,14 @@ class Asignatura_Usuario_HorarioController extends Controller
      */
     public function update(Request $request, Asignatura_Usuario_Horario $asignatura_Usuario_Horario)
     {
-        //
+        $asignatura_Usuario_Horario->usuario_id = $request->usuario_id;
+        $asignatura_Usuario_Horario->horario_id = $request->horario_id;
+        $asignatura_Usuario_Horario->asignatura_id = $request->asignatura_id;
+        $asignatura_Usuario_Horario->save();
+        return response()->json([
+            'message' => 'Recurso actualizado correctamente',
+            'data' => $asignatura_Usuario_Horario
+        ], Response::HTTP_OK);
     }
 
     /**
@@ -45,6 +66,9 @@ class Asignatura_Usuario_HorarioController extends Controller
      */
     public function destroy(Asignatura_Usuario_Horario $asignatura_Usuario_Horario)
     {
-        //
+        $asignatura_Usuario_Horario->delete();
+        return response()->json([
+            'message' => 'Recurso eliminado correctamente'
+        ], Response::HTTP_OK);
     }
 }
