@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;*/
 
+#app {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
 :root {
     --primary-color: #211261;
     --secondary-color: #008aab;
@@ -9,6 +23,10 @@
     --light-blue: #a0d3e4;
     --white: #fff;
     --black: #000;
+}
+
+main {
+    flex: 1;
 }
 
 body {
@@ -49,6 +67,8 @@ body {
 .footer {
     background-color: var(--secondary-color);
     color: #fff;
+    text-align: center;
+    padding: 1rem 0;
 }
 
 .footer a {
