@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rol;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RolController extends Controller
@@ -13,7 +14,7 @@ class RolController extends Controller
     public function index()
     {
         $rols = Rol::orderBy('id')->get();
-        return view('rols.index',['rols' => $rols]);
+        return view('rols.index', ['rols' => $rols]);
     }
 
     /**
@@ -41,7 +42,7 @@ class RolController extends Controller
      */
     public function show(Rol $rol)
     {
-        return view('rols.show',['rol'=>$rol]);
+        return view('rols.show', ['rol' => $rol]);
 
     }
 
@@ -50,7 +51,7 @@ class RolController extends Controller
      */
     public function edit(Rol $rol)
     {
-        return view('rols.edit', ['rol'=>$rol]);
+        return view('rols.edit', ['rol' => $rol]);
     }
 
     /**
@@ -67,6 +68,7 @@ class RolController extends Controller
      */
     public function destroy(Rol $rol)
     {
+        User::where('role_id', $rol->id)->update(['role_id' => null]);
         $rol->delete();
         return redirect()->route('rols.index');
     }

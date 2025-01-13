@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Rol;
 
+
 class UserController extends Controller
 {
     /**
@@ -22,7 +23,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Rol::all();
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -30,17 +32,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
         $user = new User();
-        $user->user = $request->user;
-        $user->tel1 = $request->tel1;
-        $user->tel2 = $request->tel2;
-        $user->address = $request->address;
-        $user->dni = $request->dni;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = bcrypt($request->password);
+        $user->{"tel-1"} = $request->input('tel-1');
+        $user->{"tel-2"} = $request->input('tel-2');
+        $user->address = $request->address;
+        $user->dni = $request->dni;
         $user->save();
-
+    
         return redirect()->route('users.index');
     }
 
@@ -50,7 +52,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         $rol = $user->roles;
-        return view('users.show',['user'=>$user, 'rol'=>$rol]);
+        return view('users.show', ['user' => $user, 'rol' => $rol]);
     }
 
     /**
@@ -58,7 +60,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', ['user'=>$user]);
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
@@ -75,7 +77,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = $request->password;
         $user->save();
-        return view('users.show',['user'=>$user]);
+        return view('users.show', ['user' => $user]);
     }
 
     /**
