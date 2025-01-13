@@ -10,7 +10,7 @@ class CicloUsuario extends Model
     use HasFactory;
     
     protected $table = 'ciclo_usuario';
-    protected $fillable = ['id_ciclo', 'id_usuario'];
+    protected $fillable = ['id_ciclo', 'id_usuario', 'fecha_matricula'];
 
     // Relación con Ciclo
     public function ciclo()

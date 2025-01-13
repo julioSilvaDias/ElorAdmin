@@ -10,8 +10,8 @@
 
         <!-- Campo para seleccionar el ciclo -->
         <div class="form-group">
-            <label for="id_ciclo">Ciclo</label>
-            <select name="id_ciclo" id="id_ciclo" class="form-control">
+            <label for="ciclo_id">Ciclo:</label>
+            <select name="ciclo_id" id="ciclo_id" class="form-control" required>
                 <option value="">Selecciona un ciclo</option>
                 @foreach($ciclos as $ciclo)
                     <option value="{{ $ciclo->id }}">{{ $ciclo->nombre }}</option>
@@ -21,8 +21,8 @@
 
         <!-- Campo para seleccionar el usuario -->
         <div class="form-group">
-            <label for="id_usuario">Usuario</label>
-            <select name="id_usuario" id="id_usuario" class="form-control">
+            <label for="usuario_id">Usuario:</label>
+            <select name="usuario_id" id="usuario_id" class="form-control" required>
                 <option value="">Selecciona un usuario</option>
                 @foreach($usuarios as $usuario)
                     <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
@@ -30,8 +30,16 @@
             </select>
         </div>
 
+        <!-- Campo para la fecha de matrícula -->
+        <div class="form-group">
+            <label for="fecha_matricula">Fecha de Matrícula:</label>
+            <input type="date" name="fecha_matricula" id="fecha_matricula" class="form-control" required>
+        </div>
+
         <!-- Botón de enviar -->
-        <button type="submit" class="btn btn-primary">Crear Usuario</button>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Crear Usuario</button>
+        </div>
     </form>
 </div>
 @endsection

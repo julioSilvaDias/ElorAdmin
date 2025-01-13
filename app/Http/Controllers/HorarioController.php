@@ -22,8 +22,15 @@ class HorarioController extends Controller
      */
     public function create()
     {
-        return view('horarios.create');
+        $asignaturas = \App\Models\Asignatura::pluck('nombre');
+        $profesores = \App\Models\User::whereHas('roles', function ($query) {
+            $query->where('name', 'profesor');
+        })->get();
+
+        return view('horarios.create', compact('asignaturas', 'profesores'));
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -36,10 +43,15 @@ class HorarioController extends Controller
             'asignatura_id' => 'required|exists:asignaturas,id',
         ]);
 
-        Horario::create($request->all());
+        Horario::create([
+            'dia-semana' => $request->input('dia-semana'),
+            'hora' => $request->input('hora'),
+            'asignatura_id' => $request->input('asignatura_id')
+        ]);
 
         return redirect()->route('horarios.index')->with('success', 'Horario creado exitosamente');
     }
+
 
     /**
      * Display the specified resource.
@@ -65,13 +77,17 @@ class HorarioController extends Controller
         $request->validate([
             'dia-semana' => 'required|in:lunes,martes,miércoles,jueves,viernes',
             'hora' => 'required|in:1,2,3,4,5,6',
-            'asignatura_id' => 'required|exists:asignaturas,id',
         ]);
 
-        $horario->update($request->all());
+        $horario->update([
+            'dia-semana' => $request->input('dia-semana'),
+            'hora' => $request->input('hora'),
+        ]);
 
         return redirect()->route('horarios.index')->with('success', 'Horario actualizado exitosamente');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -79,6 +95,6 @@ class HorarioController extends Controller
     public function destroy(Horario $horario)
     {
         $horario->delete();
-        return redirect()->route('horarios.index')->with('success', 'Horario eliminado exitosamente');
+        return redirect()->route('horarios.index');
     }
 }
