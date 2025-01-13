@@ -18,7 +18,7 @@ class RolSeeder extends Seeder
             "created_at"=>now(),
         ]);
         DB::table('rols')->insert([
-            "name"=>"administrador",
+            "name"=>"Administrador",
             "created_at"=>now(),
         ]);
         DB::table('rols')->insert([

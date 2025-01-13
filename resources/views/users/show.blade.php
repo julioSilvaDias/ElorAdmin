@@ -9,7 +9,7 @@
     <p><strong>Apellido:</strong> {{ $user->surname }}</p>
     <p><strong>Email:</strong> {{ $user->email }}</p>
 
-    <p><strong>Rol:</strong> {{$rol->name}}</p>
+    <p><strong>Rol:</strong> {{$rol ? $rol->name : 'Sin rol asignado'}}</p>
 
     <a href="{{ route('users.index') }}" class="btn btn-primary">Volver</a>
 </div>

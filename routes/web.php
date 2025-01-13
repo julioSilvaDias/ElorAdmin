@@ -24,27 +24,6 @@ Route::controller(CicloUsuarioController::class)->group(function () {
     Route::delete('/ciclo-usuario/{id}', [CicloUsuarioController::class, 'destroy'])->name('ciclo_usuario.destroy');
 });
 
-Route::controller(UserController::class)->group(function () {
-    Route::get('/users', 'index')->name('users.index');
-    Route::get('/users/create', 'create')->name('users.create');
-    Route::post('/users', 'store')->name('users.store');
-    Route::get('/users/{user}', 'show')->name('users.show');
-    Route::get('/users/{user}/edit', 'edit')->name('users.edit');
-    Route::put('/users/{user}', 'update')->name('users.update');
-    Route::delete('/users/{user}', 'destroy')->name('users.destroy');
-});
-
-
-Route::controller(RolController::class)->group(function () {
-    Route::get('/rols', 'index')->name('rols.index');
-    Route::get('/rols/create', 'create')->name('rols.create');
-    Route::post('/rols', 'store')->name('rols.store');
-    Route::get('/rols/{rol}', 'show')->name('rols.show');
-    Route::get('/rols/{rol}/edit', 'edit')->name('rols.edit');
-    Route::put('/rols/{rol}', 'update')->name('rols.update');
-    Route::delete('/rols/{rol}', 'destroy')->name('rols.destroy');
-});
-
 Route::controller(ReunionController::class)->group(function () {
     Route::get('/reunions', [ReunionController::class, 'index'])->name('reunions.index');
     Route::get('/reunions/create', [ReunionController::class, 'create'])->name('reunions.create');
@@ -77,6 +56,24 @@ Route::middleware(['auth'])->group(function () {
         'asignatura_Usuario_Horarios' => Asignatura_Usuario_HorarioController::class,
     ]);
 });
+
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/users', 'index')->name('users.index');
+    Route::get('/users/create', 'create')->name('users.create');
+    Route::middleware(['checkAdminCreateUser'])->post('/users', 'store')->name('users.store');
+    Route::get('/users/{user}', 'show')->name('users.show');
+    Route::get('/users/{user}/edit', 'edit')->name('users.edit');
+    Route::put('/users/{user}', 'update')->name('users.update');
+    Route::middleware(['checkUserMiddleware'])->delete('/users/{user}', 'destroy')->name('users.destroy');
+});
+
+
+
+Route::middleware(['protectDefaultRoles'])->delete('/rols/{rol}', [RolController::class, 'destroy'])->name('rols.destroy');
+Route::resources([
+    'rols' => RolController::class,
+], ['except' => ['destroy']]);
 
 Auth::routes();
 

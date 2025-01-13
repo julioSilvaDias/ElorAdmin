@@ -48,10 +48,13 @@ class UserSeeder extends Seeder
 
         User::factory()->count(3)->state([
             'role_id' => 3,
+            "password"=>bcrypt("Elorrieta00"),
+
         ])->create();
 
         User::factory()->count(10)->state([
             'role_id' => 4,
+            "password"=>bcrypt("Elorrieta00"),
         ])->create();
     }
 }

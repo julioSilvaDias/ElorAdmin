@@ -12,7 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias(['checkUserMiddleware' => \App\Http\Middleware\CheckgodRole::class]);
+        $middleware->alias(['protectDefaultRoles' => \App\Http\Middleware\ProtectDefaultRoles::class]);
+        $middleware->alias(['checkAdminCreateUser'=> \App\Http\Middleware\CheckAdminCreateUser::class]);
+        
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

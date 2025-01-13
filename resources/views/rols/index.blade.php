@@ -1,8 +1,14 @@
 @extends('layouts.general')
 
 @section('content')
+
 <div class="container">
     <h1>Lista de Roles</h1>
+
+    @if (session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+
     <a href="{{ route('rols.create') }}" class="btn btn-primary">Crear Rol</a>
 
     <table class="table">

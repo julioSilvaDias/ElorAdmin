@@ -10,7 +10,6 @@
 
     <title>@yield('title', config('app.name', 'Elorrieta Errekamari'))</title>
 
-    <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/EEM-Logo-vertical.png') }}" type="image/svg">
 
     <!-- Fonts -->
@@ -120,9 +119,9 @@
                     </div>
                     <div class="col-md-6 text-md-end">
                         <h6 class="text-uppercase">Síguenos</h6>
-                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white me-3">Facebook<i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3">Twitter<i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white">Instagram<i class="bi bi-instagram"></i></a>
                     </div>
                 </div>
                 <div class="text-center py-3" style="background-color: #211261;">
@@ -132,8 +131,7 @@
         </footer>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
