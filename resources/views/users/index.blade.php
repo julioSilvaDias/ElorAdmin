@@ -36,12 +36,23 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                        <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm">Ver</a>
-                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                        <!-- Botón Ver -->
+                        <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm" title="Ver">
+                            <i class="bi bi-eye"></i>
+                        </a>
+
+                        <!-- Botón Editar -->
+                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm" title="Editar">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+
+                        <!-- Botón Eliminar -->
                         <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
+                                <i class="bi bi-trash"></i>
+                            </button>
                         </form>
                     </td>
                 </tr>
