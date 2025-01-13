@@ -30,7 +30,10 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])
     ->middleware('auth:sanctum');
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('reunion', [ReunionController::class, 'index']);
-    Route::put('/reunion', [ReunionController::class, 'update']);
-});
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('reunion', [ReunionController::class, 'index']);
+        Route::middleware(['checkRol'])->put('reunion', [ReunionController::class, 'update']);
+    });
+    
+
+
