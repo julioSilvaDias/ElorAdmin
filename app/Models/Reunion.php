@@ -13,6 +13,8 @@ class Reunion extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = ['estado'];
+
     public function users(): BelongsTo{
         return $this->belongsTo(User::class);
     }

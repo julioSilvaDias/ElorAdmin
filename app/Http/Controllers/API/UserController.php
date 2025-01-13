@@ -88,7 +88,7 @@ class UserController extends Controller
             'password' => bcrypt($validatedData['password']),
         ]);
 
-        return response()->json($user);
+        return response()->json(data: $user);
     }
 
     /**

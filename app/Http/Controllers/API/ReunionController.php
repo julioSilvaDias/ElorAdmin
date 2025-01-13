@@ -55,28 +55,26 @@ class ReunionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Reunion $reunion)
+    public function update(Request $request)
     {
-        $validatedData = $request->validate([
-            'comentario' => 'required|string',
-            'estado' => 'nullable|string|in:pendiente,completado,cancelado',
-            'fecha-hora-inicio' => 'required|date',
-            'fecha-hora-fin' => 'required|date|after:fecha-hora-inicio',
-            'emisor_id' => 'required|integer|exists:users,id',
-            'receptor_id' => 'required|integer|exists:users,id',
+        $id = $request->query('id');
+        $estado = $request->query('estado');
+
+        $request->validate([
+            'estado' => 'required|in:aceptado,rechazado,pendiente',
         ]);
 
-        $reunion = Reunion::update([
-            'comentario' => $validatedData['comentario'],
-            'estado' => $validatedData['estado'] ?? 'pendiente',
-            'fecha-hora-inicio' => $validatedData['fecha-hora-inicio'],
-            'fecha-hora-fin' => $validatedData['fecha-hora-fin'],
-            'emisor_id' => $validatedData['emisor_id'],
-            'receptor_id' => $validatedData['receptor_id'],
+        $reunion = Reunion::find($id);
+
+        if(!$reunion){
+            return response()->json(['ERROR'=> 'Reunion no encontrada'],404);
+        }
+
+        $reunion->update([
+            'estado'=> $estado,
         ]);
 
-
-        return response()->json($reunion);
+        return response()->json(['ATENCION!!!' => 'ESTADO ACTUALIZADO COM EXITO', $reunion]);
     }
 
     /**

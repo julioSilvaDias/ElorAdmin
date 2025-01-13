@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Horario;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HorarioController extends Controller
@@ -36,10 +37,17 @@ class HorarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Horario $horario)
+    public function show($id)
     {
-        return response()->json($horario);
+        $horarios = Horario::where('profesor_id', $id)->get();
+
+        if ($horarios->isEmpty()) {
+            return response()->json(['error' => 'Horario no encontrado'], 404);
+        }
+
+        return response()->json($horarios, 200);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -52,7 +60,7 @@ class HorarioController extends Controller
             'asignatura_id' => 'required|exists:asignaturas,id',
         ]);
         $horario = Horario::update($request->all());
-        
+
         return response()->json($horario);
     }
 

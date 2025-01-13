@@ -29,14 +29,14 @@ class CicloUsuarioController extends Controller
             'id_usuario' => 'required|exists:users,id',
         ]);
 
-        CicloUsuario::create([
+        $cicloUsuario=CicloUsuario::create([
             'id_ciclo' => $request->id_ciclo,
             'id_usuario' => $request->id_usuario,
         ]);
 
         return response()->json([
             'message' => 'Recurso creado correctamente',
-            'data' => $ciclo_usuario
+            'data' => $cicloUsuario
         ], Response::HTTP_CREATED);
     }
 
@@ -57,13 +57,13 @@ class CicloUsuarioController extends Controller
             'id_ciclo' => 'required|exists:ciclos,id',
             'id_usuario' => 'required|exists:users,id',
         ]);
-        $ciclo_usuario->id_ciclo = $request->id_ciclo;
-        $ciclo_usuario->id_usuario = $request->id_usuario;
-        $ciclo_usuario->save();
+        $cicloUsuario->id_ciclo = $request->id_ciclo;
+        $cicloUsuario->id_usuario = $request->id_usuario;
+        $cicloUsuario->save();
 
         return response()->json([
             'message' => 'Recurso actualizado correctamente',
-            'data' => $ciclo_usuario
+            'data' => $cicloUsuario
         ], Response::HTTP_OK);
     }
 
@@ -72,7 +72,7 @@ class CicloUsuarioController extends Controller
      */
     public function destroy(CicloUsuario $cicloUsuario)
     {
-        $ciclo_usuario->delete();
+        $cicloUsuario->delete();
 
         return response()->json([
             'message' => 'Recurso eliminado correctamente',
