@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB; // Importante para usar DB::statement
 
 return new class extends Migration
 {
@@ -18,7 +19,6 @@ return new class extends Migration
             $table->string('tel-1')->nullable();
             $table->string('tel-2')->nullable();
             $table->string('address')->nullable();
-            $table->text('photo')->nullable();
             $table->string('dni')->unique()->nullable();     
             $table->string('name');     
             $table->string('email')->unique();
@@ -28,6 +28,9 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        // Modificar la tabla para agregar la columna 'photo' como MEDIUMBLOB
+        DB::statement('ALTER TABLE users ADD COLUMN photo MEDIUMBLOB NULL');
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
