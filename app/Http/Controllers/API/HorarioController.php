@@ -72,4 +72,17 @@ class HorarioController extends Controller
         $horario->delete();
         return response()->json(['message' => 'horario eliminado con exito']);
     }
+    public function getHorario($profesor_id)
+    {
+        // Verifica si el usuario tiene permisos
+        $profesor = User::findOrFail($profesor_id);
+        
+        // Verifica que el usuario autenticado sea el mismo o tenga rol de admin
+        if (auth()->user()->cannot('view', $profesor)) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+        
+        $horarios = Horario::where('user_id', $profesor_id)->get();
+        return response()->json($horarios);
+    }
 }

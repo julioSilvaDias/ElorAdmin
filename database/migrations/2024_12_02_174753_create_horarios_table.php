@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('horarios', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
+            $table->id();
             $table->enum('dia-semana', ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'])->default('lunes');
             $table->enum('hora', ['1', '2', '3', '4', '5', '6'])->default('1');
             $table->unsignedBigInteger('profesor_id');

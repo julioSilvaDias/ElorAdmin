@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function cicloUsuarios()
     {
-        return $this->hasMany(CicloUsuario::class, 'id_usuario');
+        return $this->hasMany(CicloUsuario::class, 'usuario_id');
     }
 
     /**
