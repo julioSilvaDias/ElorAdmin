@@ -12,11 +12,21 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::orderBy('created_at')->get();
-        return response()->json($user);
+        $perPage = $request->input('per_page', 10);
+        $page = $request->input('page', 1);
 
+        $users = User::orderBy('created_at')->paginate($perPage);
+
+        return response()->json([
+            'Usuarios' => $users->items(),
+            'Elementos Totales' => $users->total(),
+            'Itens por pagina' => $users->perPage(),
+            'Pagina Actual' => $users->currentPage(),
+            'ultima pagina' => $users->lastPage(),
+
+        ]);
     }
 
     /**
