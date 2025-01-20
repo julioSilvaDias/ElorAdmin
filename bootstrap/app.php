@@ -16,8 +16,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias(['protectDefaultRoles' => \App\Http\Middleware\ProtectDefaultRoles::class]);
         $middleware->alias(['checkAdminCreateUser'=> \App\Http\Middleware\CheckAdminCreateUser::class]);
         $middleware->alias(['checkRol'=> \App\Http\Middleware\CheckRole::class]);
+        $middleware->alias(['restrict.home'=> \App\Http\Middleware\RestrictToHome::class]);
         
     })
+
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();

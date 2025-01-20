@@ -45,7 +45,14 @@ Route::controller(HorarioController::class)->group(function () {
 });
 
 Auth::routes();
-
+//
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('restrict.home');
+Route::middleware(['auth', 'restrict.home'])->group(function () {
+    Route::get('/ciclo-usuario', function () {
+        abort(404);
+    });
+});
+//
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::permanentRedirect('/', '/home');
 
@@ -65,6 +72,8 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/users/{user}', 'show')->name('users.show');
     Route::get('/users/{user}/edit', 'edit')->name('users.edit');
     Route::put('/users/{user}', 'update')->name('users.update');
+    Route::post('/users/{user}/matricular', [UserController::class, 'matricularCiclo'])->name('users.matricular');
+    Route::post('/users/{user}/matricular', [UserController::class, 'matricular'])->name('users.matricular');
     Route::middleware(['checkUserMiddleware'])->delete('/users/{user}', 'destroy')->name('users.destroy');
 });
 

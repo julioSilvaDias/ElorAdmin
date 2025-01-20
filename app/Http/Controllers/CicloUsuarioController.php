@@ -15,8 +15,12 @@ class CicloUsuarioController extends Controller
     public function index()
     {
         $cicloUsuarios = CicloUsuario::with(['ciclo', 'usuario'])->get();
-
-        return view('cicloUsuario.index', compact('cicloUsuarios'));
+        $usuarios = User::whereHas('roles', function ($query) {
+            $query->where('name', 'Estudiante');
+        })->get();
+        $ciclos = Ciclo::all();
+    
+        return view('cicloUsuario.index', compact('cicloUsuarios', 'usuarios', 'ciclos'));
     }
 
     /**
