@@ -16,7 +16,7 @@ use App\Http\Controllers\HorarioController;
 
 Route::controller(CicloUsuarioController::class)->group(function () {
     Route::resource('/ciclo-usuario', CicloUsuarioController::class)->except(['edit', 'update', 'show']);
-    Route::get('/ciclo-usuario', [CicloUsuarioController::class, 'index'])->name('ciclo-usuario.index');
+    Route::get('/ciclo-usuario', [CicloUsuarioController::class, 'index'])->name('ciclo_usuario.index');
     Route::get('/ciclo-usuario/{id}', [CicloUsuarioController::class, 'show'])->name('ciclo_usuario.show');
     Route::get('/ciclo-usuario/{id}/edit', [CicloUsuarioController::class, 'edit'])->name('ciclo_usuario.edit');
     Route::put('/ciclo-usuario/{id}', [CicloUsuarioController::class, 'update'])->name('ciclo_usuario.update');
@@ -40,12 +40,19 @@ Route::controller(HorarioController::class)->group(function () {
     Route::post('/horarios', [HorarioController::class, 'store'])->name('horarios.store');
     Route::get('/horarios/{horario}', [HorarioController::class, 'show'])->name('horarios.show');
     Route::get('/horarios/{horario}/edit', [HorarioController::class, 'edit'])->name('horarios.edit');
-    Route::get('/horarios/{horario}', [HorarioController::class, 'update'])->name('horarios.update');
-    Route::get('/horarios/{horario}', [HorarioController::class, 'destroy'])->name('horarios.destroy');
+    Route::put('/horarios/{horario}', [HorarioController::class, 'update'])->name('horarios.update');
+    Route::delete('/horarios/{horario}', [HorarioController::class, 'destroy'])->name('horarios.destroy');
 });
 
 Auth::routes();
-
+//
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('restrict.home');
+Route::middleware(['auth', 'restrict.home'])->group(function () {
+    Route::get('/ciclo-usuario', function () {
+        abort(404);
+    });
+});
+//
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::permanentRedirect('/', '/home');
 
@@ -65,6 +72,8 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/users/{user}', 'show')->name('users.show');
     Route::get('/users/{user}/edit', 'edit')->name('users.edit');
     Route::put('/users/{user}', 'update')->name('users.update');
+    Route::post('/users/{user}/matricular', [UserController::class, 'matricularCiclo'])->name('users.matricular');
+    Route::post('/users/{user}/matricular', [UserController::class, 'matricular'])->name('users.matricular');
     Route::middleware(['checkUserMiddleware'])->delete('/users/{user}', 'destroy')->name('users.destroy');
 });
 

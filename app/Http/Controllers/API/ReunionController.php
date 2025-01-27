@@ -85,4 +85,17 @@ class ReunionController extends Controller
         $reunion->delete();
         return response()->json(['message' => 'Reunion eliminado con exito']);
     }
+    public function modificarEstado($reunion_id, Request $request)
+    {
+        $reunion = Reunion::findOrFail($reunion_id);
+
+        // Verifica que el usuario autenticado sea el propietario de la reunión o admin
+        if (auth()->user()->cannot('update', $reunion)) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        $reunion->update(['estado' => $request->estado]);
+
+        return response()->json(['message' => 'Reunión actualizada correctamente']);
+    }
 }

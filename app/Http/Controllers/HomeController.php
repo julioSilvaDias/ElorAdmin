@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,15 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            $homeUrl = route('home');
+
+            if ($request->url() !== $homeUrl) {
+                throw new NotFoundHttpException();
+            }
+
+            return $next($request);
+        });
     }
 
     /**

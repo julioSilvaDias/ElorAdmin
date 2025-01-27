@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Asignatura extends Model
 {
@@ -11,9 +12,11 @@ class Asignatura extends Model
     
     public function usuariosHorarios()
 {
-    return $this->belongsToMany(Usuario::class, 'asignatura_usuario_horario')
+    return $this->belongsToMany(User::class, 'asignatura_usuario_horario')
                 ->withPivot('horario_id')
                 ->withTimestamps();
 }
+
+protected $fillable = ['nombre'];
 
 }

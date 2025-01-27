@@ -23,9 +23,6 @@ Route::apiResource('ciclo-usuario', CicloUsuarioController::class);
 Route::apiResource('rol', RolController::class);
 Route::apiResource('user', UserController::class);*/
 
-
-
-
 Route::prefix('v1.0')->group(function () {
     Route::get('horario', [HorarioController::class, 'index']);
     Route::get('horario/{id}', [HorarioController::class, 'show']);
@@ -61,3 +58,9 @@ Route::prefix('v2.0')->group(function () {
         Route::put('/reunion', [ReunionController::class, 'update']);
     });
 });
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('reunion', [ReunionController::class, 'index']);
+        Route::middleware(['checkRol'])->put('reunion', [ReunionController::class, 'update']);
+    });
+    
