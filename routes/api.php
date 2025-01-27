@@ -41,3 +41,23 @@ Route::prefix('v1.0')->group(function () {
         Route::put('/reunion', [ReunionController::class, 'update']);
     });
 });
+
+Route::prefix('v2.0')->group(function () {
+    Route::get('/', function () {
+        return response()->json(['message' => 'Hola, estamos en la v2.0']);
+    });
+
+    Route::get('horario', [HorarioController::class, 'index']);
+    Route::get('horario/{id}', [HorarioController::class, 'show']);
+
+    Route::get('user', [UserController::class, 'index']);
+
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/logout', [AuthController::class, 'logout'])
+        ->middleware('auth:sanctum');
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('reunion', [ReunionController::class, 'index']);
+        Route::put('/reunion', [ReunionController::class, 'update']);
+    });
+});
