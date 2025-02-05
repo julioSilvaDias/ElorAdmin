@@ -34,11 +34,15 @@
                 </div>
 
                 <div>
-                    <a href="{{ route('ciclo_usuario.edit', $cicloUsuario->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{{ route('ciclo_usuario.edit', $cicloUsuario->id) }}" class="btn btn-warning btn-sm" title="Editar">
+                        <i class="bi bi-pencil"></i>
+                    </a>
                     <form action="{{ route('ciclo_usuario.destroy', $cicloUsuario->id) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro?')" title="Eliminar">
+                            <i class="bi bi-trash"></i>
+                        </button>
                     </form>
                 </div>
             </li>

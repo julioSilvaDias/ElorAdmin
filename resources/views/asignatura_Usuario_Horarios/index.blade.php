@@ -15,12 +15,14 @@
           {{$asignatura_Usuario_Horario->asignatura_id}}
           Escrito el {{$asignatura_Usuario_Horario->created_at}}
           <a class="btn btn-warning btn-sm" href="{{route('asignatura_Usuario_Horarios.edit',$asignatura_Usuario_Horario)}}"
-            role="button">Editar</a>
+            role="button" title="Editar">
+            <i class="bi bi-pencil"></i>
+          </a>
           <form action="{{route('asignatura_Usuario_Horarios.destroy',$asignatura_Usuario_Horario)}}" method="POST">
             @csrf
             @method('DELETE')
-            <button class="btn btn-sm btn-danger" type="submit"
-              onclick="return confirm('¿Estás seguro?')">Borrar
+            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Estás seguro?')" title="Eliminar">
+              <i class="bi bi-trash"></i>
             </button>
           </form>
         </div>
