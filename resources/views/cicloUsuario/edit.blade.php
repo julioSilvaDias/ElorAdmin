@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Editar Ciclo Usuario</h1>
+    <h1>Editar Matricula</h1>
 
     <form action="{{ route('ciclo_usuario.update', $ciclo_usuario->id) }}" method="POST">
         @csrf

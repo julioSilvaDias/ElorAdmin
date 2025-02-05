@@ -3,6 +3,12 @@
     --secondary-color: #008aab;
     --accent-color: #3cb4e5;
     --light-blue: #d6f5ff;
+    --dark-primary-color: #1a1a1a; /* Color de fondo en oscuro */
+    --dark-secondary-color: #008aab;
+    --dark-accent-color: #121212; /* Color de fondo principal para modo oscuro */
+    --dark-light-blue: #3a3a3a; /* Un azul oscuro para modo oscuro */
+    --dark-text-color: #fff;
+    --dark-table-hover-bg: #3a3a3a; /* Color de fondo de las filas al pasar el mouse */
 }
 
 body {
@@ -59,7 +65,19 @@ body {
     margin: 0;
 }
 
+/* Modo oscuro */
+body.dark .footer {
+    background-color: var(--dark-primary-color);
+    color: var(--dark-text-color);
+}
 
+body.dark .footer a {
+    color: var(--dark-text-color);
+}
+
+body.dark .footer a:hover {
+    text-decoration: underline;
+}
 
 .table tbody tr.row-light {
     background-color: #ffffff;

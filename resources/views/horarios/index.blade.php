@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Lista de Horarios</h1>
+    <h1>Horarios</h1>
 
     <a href="{{ route('horarios.create') }}"class="btn btn-primary mb-3">Crear nuevo horario</a>
 

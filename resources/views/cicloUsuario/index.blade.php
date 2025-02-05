@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Ciclo Usuarios</h1>
+    <h1>Matriculas</h1>
 
     <!-- Botón para crear -->
     <a href="{{ route('ciclo_usuario.create') }}" class="btn btn-primary mb-3">Crear Ciclo Usuario</a>
