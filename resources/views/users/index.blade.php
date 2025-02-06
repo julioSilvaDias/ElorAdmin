@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">Lista de Usuarios</h1>
+    <h1 class="mb-4">Usuarios</h1>
 
     @if (session('error'))
         <div class="alert alert-danger">
@@ -20,8 +20,8 @@
 
     <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Crear Usuario</a>
 
-    <table class="table table-striped table-hover">
-        <thead class="table-dark">
+    <table class="table table-striped table-hover dark:bg-gray-800 dark:text-white">
+        <thead class="bg-light dark:bg-gray-900">
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
@@ -31,7 +31,7 @@
         </thead>
         <tbody>
             @foreach ($users as $user)
-                <tr>
+                <tr class="dark:hover:bg-gray-700">
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>

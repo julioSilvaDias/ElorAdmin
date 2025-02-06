@@ -14,13 +14,14 @@
           {{$asignatura->descripcion}}
           {{$asignatura->ciclo_id}}
           Escrito el {{$asignatura->created_at}}
-          <a class="btn btn-warning btn-sm" href="{{route('asignaturas.edit',$asignatura)}}"
-            role="button">Editar</a>
+          <a class="btn btn-warning btn-sm" href="{{route('asignaturas.edit',$asignatura)}}" role="button" title="Editar">
+            <i class="bi bi-pencil"></i>
+          </a>
           <form action="{{route('asignaturas.destroy',$asignatura)}}" method="POST">
             @csrf
             @method('DELETE')
-            <button class="btn btn-sm btn-danger" type="submit"
-              onclick="return confirm('¿Estás seguro?')">Borrar
+            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Estás seguro?')" title="Eliminar">
+              <i class="bi bi-trash"></i>
             </button>
           </form>
         </div>

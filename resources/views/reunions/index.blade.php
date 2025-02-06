@@ -33,16 +33,22 @@
                 <td>{{ $reunion->receptor?->name ?? 'Sin receptor' }}</td>
                 <td>
                     <!-- Botón Ver -->
-                    <a href="{{ route('reunions.show', $reunion) }}" class="btn btn-info btn-sm">Ver</a>
+                    <a href="{{ route('reunions.show', $reunion) }}" class="btn btn-info btn-sm" title="Ver">
+                        <i class="bi bi-eye"></i>
+                    </a>
                     
                     <!-- Botón Editar -->
-                    <a href="{{ route('reunions.edit', $reunion) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{{ route('reunions.edit', $reunion) }}" class="btn btn-warning btn-sm" title="Editar">
+                        <i class="bi bi-pencil"></i>
+                    </a>
                     
                     <!-- Formulario de Eliminar -->
                     <form action="{{ route('reunions.destroy', $reunion) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro?')" title="Eliminar">
+                            <i class="bi bi-trash"></i>
+                        </button>
                     </form>
                 </td>
             </tr>

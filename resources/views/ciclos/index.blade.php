@@ -14,13 +14,14 @@
           {{$ciclo->curso}}
           {{$ciclo->descripcion}}
           Escrito el {{$ciclo->created_at}}
-          <a class="btn btn-warning btn-sm" href="{{route('ciclos.edit',$ciclo)}}"
-            role="button">Editar</a>
+          <a class="btn btn-warning btn-sm" href="{{route('ciclos.edit',$ciclo)}}" role="button" title="Editar">
+            <i class="bi bi-pencil"></i>
+          </a>
           <form action="{{route('ciclos.destroy',$ciclo)}}" method="POST">
             @csrf
             @method('DELETE')
-            <button class="btn btn-sm btn-danger" type="submit"
-              onclick="return confirm('¿Estás seguro?')">Borrar
+            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Estás seguro?')" title="Eliminar">
+              <i class="bi bi-trash"></i>
             </button>
           </form>
         </div>

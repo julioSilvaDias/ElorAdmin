@@ -15,7 +15,6 @@ html, body {
     flex-direction: column;
 }
 
-
 :root {
     --primary-color: #211261;
     --secondary-color: #008aab;
@@ -23,6 +22,13 @@ html, body {
     --light-blue: #a0d3e4;
     --white: #fff;
     --black: #000;
+     /* Modo oscuro */
+     --dark-primary-color: #1a1a1a;
+     --dark-secondary-color: #008aab;
+     --dark-accent-color: #121212;
+     --dark-light-blue: #3a3a3a;
+     --dark-text-color: #fff;
+     --dark-table-hover-bg: #3a3a3a;
 }
 
 main {
@@ -34,10 +40,19 @@ body {
     background-color: var(--accent-color);
     color: var(--black);
 }
+/* Modo oscuro */
+body.dark {
+    background-color: var(--dark-accent-color);
+    color: var(--dark-text-color);
+}
 
 .navbar {
     background-color: var(--white);
     min-height: 80px;
+}
+/* Modo oscuro */
+body.dark .navbar {
+    background-color: var(--dark-primary-color);
 }
 
 .navbar-brand,
@@ -62,6 +77,17 @@ body {
 .btn-primary:hover {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
+}
+
+/* Modo oscuro */
+body.dark .btn-primary {
+    background-color: var(--dark-secondary-color);
+    border-color: var(--dark-secondary-color);
+}
+
+body.dark .btn-primary:hover {
+    background-color: var(--dark-primary-color);
+    border-color: var(--dark-primary-color);
 }
 
 .footer {
@@ -96,12 +122,28 @@ body {
 
 .table tbody tr.row-blue {
     background-color: var(--light-blue);
-    color: #000;
+    color: #000; 
 }
 
 .table tbody tr:hover {
-    background-color: var(--accent-color) !important;
+    background-color: var(--accent-color) !important; 
     color: #fff;
+}
+
+/* Modo oscuro */
+body.dark .table tbody tr.row-light {
+    background-color: #333333; /* Fondo oscuro */
+    color: var(--dark-text-color); /* Texto blanco */
+}
+
+body.dark .table tbody tr.row-blue {
+    background-color: var(--dark-light-blue);
+    color: var(--dark-text-color);
+}
+
+body.dark .table tbody tr:hover {
+    background-color: var(--dark-table-hover-bg) !important;
+    color: var(--dark-text-color);
 }
 
 .table-striped tbody tr:nth-of-type(odd) {

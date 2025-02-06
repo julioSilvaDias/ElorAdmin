@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Lista de Horarios</h1>
+    <h1>Horarios</h1>
 
     <a href="{{ route('horarios.create') }}"class="btn btn-primary mb-3">Crear nuevo horario</a>
 
@@ -26,11 +26,15 @@
                     <td>{{ $horario->profesor->name ?? 'Sin profesor' }}</td>
                     <td>{{ $horario->asignatura->nombre ?? 'Sin asignatura' }}</td>
                     <td>
-                        <a href="{{ route('horarios.edit', $horario->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{{ route('horarios.edit', $horario->id) }}" class="btn btn-warning btn-sm" title="Editar">
+                            <i class="bi bi-pencil"></i>
+                        </a>
                         <form action="{{ route('horarios.destroy', $horario->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro?')" title="Eliminar">
+                                <i class="bi bi-trash"></i>
+                            </button>
                         </form>
                     </td>
                 </tr>
