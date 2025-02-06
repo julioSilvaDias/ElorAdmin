@@ -73,4 +73,10 @@ class CicloController extends Controller
         $ciclo->delete();
         return redirect()->route('ciclos.index');
     }
+
+    public function allCiclos()
+    {
+        $ciclos = Ciclo::with('asignaturas')->orderBy('id')->get();
+        return view('ciclos',['ciclos' => $ciclos]);
+    }
 }

@@ -15,7 +15,7 @@ class CicloUsuario extends Model
     // Relación con Ciclo
     public function ciclo()
     {
-        return $this->belongsTo(Ciclo::class, 'id_ciclo');
+        return $this->belongsTo(Ciclo::class, 'ciclo_id');
     }
 
     // Relación con User

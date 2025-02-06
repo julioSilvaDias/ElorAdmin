@@ -18,8 +18,8 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             "user"=>"God",
             "surname"=>"godSurname",
-            "tel-1"=>"godTel1",
-            "tel-2"=>"godTel2",
+            "tel1"=>"godTel1",
+            "tel2"=>"godTel2",
             "address"=>"godAddress",
             "dni"=>"000000G",
             "name"=>"godName",
@@ -34,8 +34,8 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             "user"=>"Snaider",
             "surname"=>"Luna",
-            "tel-1"=>"999",
-            "tel-2"=>"777",
+            "tel1"=>"999",
+            "tel2"=>"777",
             "address"=>"Elorrieta",
             "dni"=>"000000S",
             "name"=>"Jordy",

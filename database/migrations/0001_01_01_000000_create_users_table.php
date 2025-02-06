@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string('user')->nullable();
             $table->string('surname')->nullable();
-            $table->string('tel-1')->nullable();
-            $table->string('tel-2')->nullable();
+            $table->string('tel1')->nullable();
+            $table->string('tel2')->nullable();
             $table->string('address')->nullable();
             $table->string('dni')->unique()->nullable();     
             $table->string('name');     

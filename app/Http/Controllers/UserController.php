@@ -125,4 +125,16 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('users.index');
     }
+
+    public function personal() 
+    {
+        $users = User::orderBy('surname', 'desc')->get();
+        return view('personal', ['users' => $users]);
+    }
+
+    public function alumnos() 
+    {
+        $users = User::where('role_id', 4)->orderBy('id')->get();
+        return view('alumnos', ['users' => $users]);
+    }
 }
