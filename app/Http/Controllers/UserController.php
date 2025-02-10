@@ -134,7 +134,8 @@ class UserController extends Controller
 
     public function alumnos() 
     {
-        $users = User::where('role_id', 4)->orderBy('id')->get();
+        $paginationCount = env('PAGINATION_COUNT');
+        $users = User::where('role_id', 4)->orderBy('id')->paginate($paginationCount);
         return view('alumnos', ['users' => $users]);
     }
 }
