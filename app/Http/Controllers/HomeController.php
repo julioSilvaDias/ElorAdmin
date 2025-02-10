@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Asignatura;
 use App\Models\Asignatura_Usuario_Horario;
 use App\Models\User;
 use App\Models\Ciclo;
@@ -37,9 +38,12 @@ class HomeController extends Controller
     {
         $user = auth()->user();
         if ($user->role_id == 2 || $user->role_id == 1) {
-            $users = User::where('role_id', 3)->orderBy('id')->get();
+            $alumnos = User::where('role_id', 4)->get();
             $ciclos = Ciclo::orderBy('id')->get();
-            return view('admin', ['users'=> $users,'ciclos'=> $ciclos]);
+            $personal = User::where('role_id', 3)->get();
+            $usersSinRol = User::whereNull('role_id')->get();
+            $asignaturas = Asignatura->get();
+            return view('admin', ['alumnos'=> $alumnos, 'personal' => $personal, 'ciclos'=> $ciclos, 'usersSinRol' => $usersSinRol]);
         } else if ($user->role_id == 3) {
             $asignatura_Usuario_Horarios = Asignatura_Usuario_Horario::where('usuario_id', $user->id)->with('asignatura')->get();
             return view('profesor', ['asignatura_Usuario_Horarios' => $asignatura_Usuario_Horarios]);
