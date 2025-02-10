@@ -5,14 +5,55 @@
 @section('page-title', 'Dashboard Overview')
 
 @section('content')
+
+
 <div class="row g-4">
+    <table class="table table-striped table-hover dark:bg-gray-800 dark:text-white">
+        <thead class="bg-light dark:bg-gray-900">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($users as $user)
+                <tr class="dark:hover:bg-gray-700">
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>
+                        <!-- Botón Ver -->
+                        <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm" title="Ver">
+                            <i class="bi bi-eye"></i>
+                        </a>
+
+                        <!-- Botón Editar -->
+                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm" title="Editar">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+
+                        <!-- Botón Eliminar -->
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
     <div class="col-12 col-md-6 col-lg-3">
         <div class="card text-bg-primary mb-4">
             <div class="card-header">
                 <h6>Total Users</h6>
             </div>
             <div class="card-body">
-                <h3>1,234</h3>
+                <h3>{{ count($users) }}</h3>
                 <p>Active this week</p>
             </div>
         </div>

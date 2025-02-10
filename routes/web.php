@@ -66,6 +66,8 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::controller(UserController::class)->group(function () {
+    Route::get('/alumnos', 'alumnos')->name('users.alumnos');
+    Route::get('/personal', 'personal')->name('users.personal');
     Route::get('/users', 'index')->name('users.index');
     Route::get('/users/create', 'create')->name('users.create');
     Route::middleware(['checkAdminCreateUser'])->post('/users', 'store')->name('users.store');
@@ -86,6 +88,7 @@ Route::resources([
 
 Auth::routes();
 
+Route::get('/allCiclos', [App\Http\Controllers\CicloController::class, 'allCiclos'])->name('allCiclos');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 

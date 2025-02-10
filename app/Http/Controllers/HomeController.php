@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Asignatura_Usuario_Horario;
+use App\Models\User;
+use App\Models\Ciclo;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -35,7 +37,9 @@ class HomeController extends Controller
     {
         $user = auth()->user();
         if ($user->role_id == 2 || $user->role_id == 1) {
-            return view('admin');
+            $users = User::where('role_id', 3)->orderBy('id')->get();
+            $ciclos = Ciclo::orderBy('id')->get();
+            return view('admin', ['users'=> $users,'ciclos'=> $ciclos]);
         } else if ($user->role_id == 3) {
             $asignatura_Usuario_Horarios = Asignatura_Usuario_Horario::where('usuario_id', $user->id)->with('asignatura')->get();
             return view('profesor', ['asignatura_Usuario_Horarios' => $asignatura_Usuario_Horarios]);
