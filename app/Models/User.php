@@ -25,7 +25,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Asignatura::class, 'asignatura_usuario_horario')
                 ->withPivot('horario_id')
                 ->withTimestamps();
-
+    }
+    
+    public function asignaturaUsuarioHorarios()
+    {
+        return $this->hasMany(Asignatura_Usuario_Horario::class, 'usuario_id');
     }
 
     public function reuniones(): HasMany {
@@ -34,7 +38,7 @@ class User extends Authenticatable
 
     public function ciclos()
     {
-        return $this->belongsToMany(Ciclo::class, 'ciclo_usuario', 'id_usuario', 'id_ciclo');
+        return $this->belongsToMany(Ciclo::class, 'ciclo_usuario', 'usuario_id', 'id_ciclo');
     }
 
     public function cicloUsuarios()

@@ -16,4 +16,9 @@ class Ciclo extends Model
     {
         return $this->hasMany(CicloUsuario::class, 'id_ciclo');
     }
+
+    public function asignaturas()
+    {
+        return $this->hasMany(Asignatura::class);
+    }
 }

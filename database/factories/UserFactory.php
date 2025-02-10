@@ -29,8 +29,8 @@ class UserFactory extends Factory
         return [
             'user' => fake()->userName(),
             'surname' => fake()->lastName(),
-            'tel-1' => fake()->phoneNumber(),
-            'tel-2' => fake()->phoneNumber(),
+            'tel1' => fake()->phoneNumber(),
+            'tel2' => fake()->phoneNumber(),
             'address' => fake()->address(),
             'photo' => fake()->optional()->imageUrl(200, 200, 'people'),
             'dni' => fake()->unique()->regexify('[0-9]{8}[A-Z]'),
