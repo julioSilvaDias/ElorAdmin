@@ -1,0 +1,276 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/ciclo": {
+            "get": {
+                "summary": "Mostrar ciclos",
+                "operationId": "753b902c6105a2a70c9b856541568ab0",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los ciclos."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/ciclos": {
+            "post": {
+                "tags": [
+                    "Ciclos"
+                ],
+                "summary": "Crear un nuevo ciclo",
+                "description": "Crear un nuevo ciclo.",
+                "operationId": "7fed57566152c398da15bd0d6194a2da",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "curso",
+                                    "descripcion"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Ciclo 1"
+                                    },
+                                    "curso": {
+                                        "type": "string",
+                                        "example": "2024"
+                                    },
+                                    "descripcion": {
+                                        "type": "string",
+                                        "example": "Descripción del ciclo"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Ciclo creado correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Recurso creado correctamente"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Ciclo"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/ciclos/{id}": {
+            "get": {
+                "tags": [
+                    "Ciclos"
+                ],
+                "summary": "Obtener un ciclo por ID",
+                "description": "Obtener un ciclo específico.",
+                "operationId": "f3b02d668d4f1eb467125505024cf3dd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del ciclo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ciclo obtenido correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Ciclo"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Ciclos"
+                ],
+                "summary": "Actualizar un ciclo",
+                "description": "Actualizar un ciclo existente.",
+                "operationId": "9e28e8a8947fe25109c57518dc1bfce3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del ciclo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "curso",
+                                    "descripcion"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Nuevo nombre"
+                                    },
+                                    "curso": {
+                                        "type": "string",
+                                        "example": "2025"
+                                    },
+                                    "descripcion": {
+                                        "type": "string",
+                                        "example": "Nueva descripción"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ciclo actualizado correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Recurso actualizado correctamente"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Ciclo"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Ciclos"
+                ],
+                "summary": "Eliminar un ciclo",
+                "description": "Eliminar un ciclo.",
+                "operationId": "7276fd27427800f8a6c289fa95c5a0c6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del ciclo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ciclo eliminado correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Recurso eliminado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Ciclo": {
+                "title": "Ciclo",
+                "description": "Modelo de un ciclo",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nombre": {
+                        "type": "string",
+                        "example": "Ciclo 1"
+                    },
+                    "curso": {
+                        "type": "string",
+                        "example": "2024"
+                    },
+                    "descripcion": {
+                        "type": "string",
+                        "example": "Descripción del ciclo"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-02-10T12:34:56Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-02-10T12:34:56Z"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Ciclos",
+            "description": "Ciclos"
+        }
+    ]
+}
