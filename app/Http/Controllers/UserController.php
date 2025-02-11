@@ -128,7 +128,8 @@ class UserController extends Controller
 
     public function personal() 
     {
-        $users = User::orderBy('surname', 'desc')->get();
+        $paginationCount = env('PAGINATION_COUNT');
+        $users = User::orderBy('surname', 'desc')->paginate($paginationCount);
         return view('personal', ['users' => $users]);
     }
 
@@ -137,5 +138,12 @@ class UserController extends Controller
         $paginationCount = env('PAGINATION_COUNT');
         $users = User::where('role_id', 4)->orderBy('id')->paginate($paginationCount);
         return view('alumnos', ['users' => $users]);
+    }
+
+    public function usersSinRol() 
+    {
+        $paginationCount = env('PAGINATION_COUNT');
+        $users = User::whereNull('role_id')->paginate($paginationCount);
+        return view('personal', ['users' => $users]);
     }
 }

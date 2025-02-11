@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reunion;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReunionController extends Controller
@@ -57,7 +58,7 @@ class ReunionController extends Controller
      */
     public function edit(Reunion $reunion)
     {
-        return view ('reunions.edit',['reunion'=>$reunion]);
+        return view('reunions.edit', ['reunion' => $reunion]);
     }
 
     /**
@@ -73,7 +74,7 @@ class ReunionController extends Controller
         $reunion->emisor_id = $request->input('emisor_id');
         $reunion->receptor_id = $request->input('receptor_id');
         $reunion->save();
-        
+
         return redirect()->route('reunions.index')->with('success', 'Reunión actualizada correctamente.');
     }
 
@@ -85,5 +86,29 @@ class ReunionController extends Controller
         $reunion->delete();
 
         return redirect()->route('reunions.index');
+    }
+
+    public function reunionesHoyAceptada()
+    {
+        //Cargar las reuniones
+        $reunions = Reunion::whereDate('fecha-hora-inicio', Carbon::today())->where('estado', 'aceptado')->get();
+
+        return view('reunions.index', ['reunions' => $reunions]);
+    }
+
+    public function reunionesHoyPendiente()
+    {
+        //Cargar las reuniones
+        $reunions = Reunion::whereDate('fecha-hora-inicio', Carbon::today())->where('estado', 'pendiente')->get();
+
+        return view('reunions.index', ['reunions' => $reunions]);
+    }
+
+    public function reunionesApartirHoy()
+    {
+        //Cargar las reuniones
+        $reunions = Reunion::whereDate('fecha-hora-inicio', '>=', Carbon::today())->where('estado', 'pendiente')->orWhere('estado', 'aceptado')->get();
+
+        return view('reunions.index', ['reunions' => $reunions]);
     }
 }

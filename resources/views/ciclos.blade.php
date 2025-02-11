@@ -108,7 +108,7 @@
                                     <strong>Ciclo</strong> : {{ $ciclo->nombre }}
                                 </button>
                             </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                            <div id="collapse{{ $ciclo->id }}" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     @foreach ($ciclo->asignaturas as $asignatura)
                                     <strong>{{ $asignatura->nombre }}</strong> 

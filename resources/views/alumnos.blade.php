@@ -115,14 +115,18 @@
                     <thead class="table-dark">
                         <tr>
                             <th>Nombre</th>
+                            <th>Apellido</th>
                             <th>Email</th>
+                            <th>telefono</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
                         <tr>
                             <td>{{ $user->name }}</td>
+                            <td>{{ $user->surname }}</td>
                             <td>{{ $user->email }}</td>
+                            <td>{{ $user->tel1 }}</td>
                         </tr>
                         @endforeach
                     </tbody>

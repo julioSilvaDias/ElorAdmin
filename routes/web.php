@@ -25,6 +25,9 @@ Route::controller(CicloUsuarioController::class)->group(function () {
 });
 
 Route::controller(ReunionController::class)->group(function () {
+    Route::get('/reunionesHoyAceptada', [ReunionController::class, 'reunionesHoyAceptada'])->name('reunions.reunionesHoyAceptada');
+    Route::get('/reunionesHoyPendiente', [ReunionController::class, 'reunionesHoyPendiente'])->name('reunions.reunionesHoyPendiente');
+    Route::get('/reunionesApartirHoy', [ReunionController::class, 'reunionesApartirHoy'])->name('reunions.reunionesApartirHoy');
     Route::get('/reunions', [ReunionController::class, 'index'])->name('reunions.index');
     Route::get('/reunions/create', [ReunionController::class, 'create'])->name('reunions.create');
     Route::post('/reunions', [ReunionController::class, 'store'])->name('reunions.store');
@@ -66,6 +69,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::controller(UserController::class)->group(function () {
+    Route::get('/usersSinRol', 'usersSinRol')->name('users.usersSinRol');
     Route::get('/alumnos', 'alumnos')->name('users.alumnos');
     Route::get('/personal', 'personal')->name('users.personal');
     Route::get('/users', 'index')->name('users.index');
